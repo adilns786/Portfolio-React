@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import itemsData from '../assets/data.json';
 
 const BentoGrid = () => {
     const [boxData, setBoxData] = useState([]);
-    const totalCols = 8;
-    const totalRows = 8;
+    const totalCols = 12;
+    const totalRows = 10;
 
     useEffect(() => {
         fetchBoxData();
+        // console.log(itemsData)
     }, []);
 
     const fetchBoxData = async () => {
         try {
             const response = await axios.get('http://localhost:5000/api/boxdata');
-            // console.log(response.data)
+            console.log(response.data)
             setBoxData(response.data);
         } catch (error) {
-            setBoxData([{'id': 1, 'x': 5, 'y': 4, 'width': 2, 'height': 4, 'priority': 1}, {'id': 2, 'x': 0, 'y': 2, 'width': 4, 'height': 3, 'priority': 1}, {'id': 3, 'x': 2, 'y': 5, 'width': 3, 'height': 2, 'priority': 2}, {'id': 4, 'x': 0, 'y': 0, 'width': 3, 'height': 2, 'priority': 2}, {'id': 5, 'x': 4, 'y': 0, 'width': 3, 'height': 2, 'priority': 2}])
+            setBoxData([{ 'id': 1, 'x': 5, 'y': 4, 'width': 2, 'height': 4, 'priority': 1 }, { 'id': 2, 'x': 0, 'y': 2, 'width': 4, 'height': 3, 'priority': 1 }, { 'id': 3, 'x': 2, 'y': 5, 'width': 3, 'height': 2, 'priority': 2 }, { 'id': 4, 'x': 0, 'y': 0, 'width': 3, 'height': 2, 'priority': 2 }, { 'id': 5, 'x': 4, 'y': 0, 'width': 3, 'height': 2, 'priority': 2 }])
             console.error('Error fetching box data:', error);
         }
     };
@@ -38,32 +40,42 @@ const BentoGrid = () => {
     };
     var wheight = window.innerHeight / 8;
     return (
-        <>
-            <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleRandomPlacement}>
+        <div className='flex justify-center items-center  w-full h-full '>
+            <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute z-10" onClick={handleRandomPlacement}>
                 Place Boxes
             </button>
-            <div className="grid gap-2" style={{
-                backgroundColor: "white",
+            <div className="grid gap-1 h-full w-full" style={{
+                backgroundColor: "",
                 display: 'grid',
                 gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))`,
-                height: `100vh`, // Assuming each row has a height of 40px
-                width: `100vh`,   // Assuming each column has a width of 40px
+                // height: `90vh`, 
+                // width: `50vw`,  
             }}>
                 {Array.from({ length: totalCols * totalRows }, (_, index) => {
                     const currentBox = boxData.find(box => box.id === index + 1);
                     if (currentBox) {
+                        // console.log(currentBox, index)
                         const { x, y, width, height } = currentBox;
                         return (
                             <div
                                 key={index}
-                                className={`bg-${getBgColor(currentBox.priority)} border border-gray-500 p-2 `}
+                                className={`bg-${getBgColor(currentBox.priority)} border border-gray-500 overflow-hidden relative group`}
                                 style={{
                                     gridColumn: `${x + 1} / span ${width}`,
                                     gridRow: `${y + 1} / span ${height}`,
                                     height: { wheight },
-                                    width: { wheight }
+                                    width: { wheight },
+                                    borderRadius: "10px",
+                                    backgroundColor: "white",
                                 }}
                             >
+                                <img src={itemsData[index].img} className="block w-full h-full rounded-lg transition-opacity duration-300 ease-in-out group-hover:opacity-50 overflow-hidden" />
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                                    <div className="bg-black bg-opacity-75 text-white rounded-lg p-4">
+                                        {itemsData[index].text}
+                                        {/* Additional content to show on hover */}
+                                    </div>
+                                </div>
                                 {/* You can add box content here if needed */}
                             </div>
                         );
@@ -72,7 +84,7 @@ const BentoGrid = () => {
                     }
                 })}
             </div>
-        </>
+        </div>
     );
 };
 

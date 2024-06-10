@@ -1,19 +1,19 @@
 import random
 
 box_data = [
-    {"id": 1, "x": 0, "y": 0, "width": 2, "height": 4, "priority": 1},
-    {"id": 2, "x": 0, "y": 0, "width": 4, "height": 3, "priority": 1},
-    {"id": 3, "x": 0, "y": 0, "width": 3, "height": 2, "priority": 2},
-    {"id": 4, "x": 0, "y": 0, "width": 3, "height": 2, "priority": 2},
-    {"id": 5, "x": 0, "y": 0, "width": 3, "height": 2, "priority": 2},
-    # {"id": 6, "x": 0, "y": 0, "width": 1, "height": 1, "priority": 1},
-    # {"id": 7, "x": 0, "y": 0, "width": 1, "height": 1, "priority": 1},
-    # {"id": 8, "x": 0, "y": 0, "width": 1, "height": 1, "priority": 2},
-    # {"id": 9, "x": 0, "y": 0, "width": 1, "height": 1, "priority": 2},
+    {"id": 1, "x": 0, "y": 0, "width": 4, "height": 4, "priority": 1},
+    {"id": 2, "x": 0, "y": 0, "width": 4, "height": 4, "priority": 1},
+    {"id": 3, "x": 0, "y": 0, "width": 3, "height": 3, "priority": 2},
+    {"id": 4, "x": 0, "y": 0, "width": 3, "height": 3, "priority": 2},
+    {"id": 5, "x": 0, "y": 0, "width": 3, "height": 3, "priority": 2},
+    # {"id": 6, "x": 0, "y": 0, "width": 1, "height": 1, "priority": 3},
+    # {"id": 7, "x": 0, "y": 0, "width": 2, "height": 2, "priority": 3},
+    # {"id": 8, "x": 0, "y": 0, "width": 1, "height": 2, "priority": 3},
+    # {"id": 9, "x": 0, "y": 0, "width": 2, "height": 1, "priority": 3},
     # {"id": 10, "x": 0, "y": 0, "width": 1, "height": 1, "priority": 2}
 ]
-total_cols = 8
-total_rows = 8
+total_cols = 12
+total_rows = 10
 
 def handle_random_placement():
     grid_data = [[0] * total_rows for _ in range(total_cols)]

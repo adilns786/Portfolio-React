@@ -1,12 +1,12 @@
 import { gsap } from "gsap";
 
 import { RoughEase } from "gsap/EasePack";
-
+import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, RoughEase);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, RoughEase,Flip);
 
 export const RotateDown = (element) => {
     const element2 = document.querySelector('.hero');
@@ -17,7 +17,7 @@ export const RotateDown = (element) => {
    // Define the animation for the first position
    gsap.to(element, {
     rotation: 0, // Rotate the element to 0 degrees
-    y: window.innerHeight *1.4, // Move the element vertically to 750 pixels from the top
+    y: window.innerHeight+ window.innerWidth *0.15 , // Move the element vertically to 750 pixels from the top
     x:  - (element.offsetWidth / 2), // Move the element horizontally to the center of the screen
     scrollTrigger: {
       trigger: element2,
@@ -25,27 +25,23 @@ export const RotateDown = (element) => {
       end: "bottom -=10",
       scrub: true,
       markers: true, // For debugging
-     
+      // once:true,  //animates only once
     }
   });
   
-  
-
-  // Define the animation for the second position
-//   gsap.to(element, {
-//     rotation: 720, // Rotate the element 720 degrees
-//     scale: 1, // Scale the element to its original size
-//     x: 300, // Translate the element horizontally by 300 pixels
-//     duration: 1, // Animation duration
-//     scrollTrigger: {
-//       trigger: element,
-//       start: "center center",
-//       end: "bottom center",
-//       scrub: true,
-//     //   markers:true // Smoothly transitions the animation during scrolling
-//     }
-//   });
 };
+
+export const flipper=(element)=>{
+// record some extra properties (optional)
+const state = Flip.getState(".targets", { props: "backgroundColor,color" });
+// animate from the previous state to the current one:
+Flip.from(state, {
+  duration: 1,
+  ease: "power1.inOut",
+  absolute: true,
+  onComplete: myFunc,
+});
+}
 
 export const clearAnimation = (element) => {
     gsap.killTweensOf(element);
