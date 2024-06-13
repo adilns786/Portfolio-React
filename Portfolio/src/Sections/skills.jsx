@@ -73,7 +73,7 @@ function Skills() {
     };
 
     return (
-        <div className="relative bg-gray-100 py-24" ref={containerRef}>
+        <div className="relative bg-gray-100 py-24" style={{marginLeft:"5vw"}} ref={containerRef}>
             <h2 className="text-4xl font-bold mb-12 text-center">My Skills</h2>
             <div className="flex justify-center items-center">
                 <div className="relative w-full h-[600px] flex justify-center items-center"> {/* Adjust height as needed */}

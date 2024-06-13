@@ -7,14 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
+      alpha01:"#07060F",  
       alpha: '#0D0C1D',  // Example hex color
-      faf3: '#12142B',
+      beta: '#12142B',
       charlie: '#161B33',
       delta: '#474973',
       eigen: '#A69CAC',
       faf: '#F1DAC4',
       faf2:'#F8EDE2',
-      beta:"#FCF6F1",
+      faf3:"#FCF6F1",
       // Add more custom colors if needed
     },
   },

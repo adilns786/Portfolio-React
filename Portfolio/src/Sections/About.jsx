@@ -2,7 +2,7 @@ import React from "react";
 
 function AboutMe() {
     return (
-        <div className="bg-white py-12 px-6 md:px-12 lg:px-24">
+        <div className="bg-white py-12 px-6 md:px-12 lg:px-24" style={{marginLeft:"5vw"}}>
             <div className="flex flex-col md:flex-row items-center">
                 {/* Image Section */}
                 <div className="md:w-1/3 mb-6 md:mb-0">

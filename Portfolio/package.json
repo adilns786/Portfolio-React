@@ -10,10 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.6.3",
+    "animejs": "^3.2.2",
     "axios": "^1.6.8",
     "clsx": "^2.1.1",
     "framer-motion": "^11.1.7",
     "gsap": "^3.12.5",
+    "interactjs": "^1.10.27",
     "kute.js": "^2.2.4",
     "lenis": "^1.0.45",
     "react": "^18.2.0",

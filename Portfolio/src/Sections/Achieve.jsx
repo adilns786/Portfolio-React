@@ -21,7 +21,7 @@ function Achievements() {
     ];
 
     return (
-        <div className="bg-gray-100 py-12 px-6 md:px-12 lg:px-24">
+        <div className="bg-gray-100 py-12 px-6 md:px-12 lg:px-24" style={{marginLeft:"5vw"}}>
             <h2 className="text-4xl font-bold mb-8 text-center">Achievements</h2>
             <div className="grid gap-8 lg:grid-cols-2">
                 {achievements.map((achievement, index) => (
