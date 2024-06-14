@@ -1,12 +1,12 @@
 import { gsap } from "gsap";
 
 import { RoughEase } from "gsap/EasePack";
-import { Flip } from "gsap/Flip";
+// import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, RoughEase,Flip);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, RoughEase,);
 
 export const RotateDown = (element,setproject) => {
     const element2 = document.querySelector('.hero');

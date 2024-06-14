@@ -1,6 +1,13 @@
 import React from "react";
+import { gsap } from "gsap";
 
 function Achievements() {
+    const animateOnScroll = () => {
+        gsap.to(".element-to-animate", {
+          y: () => -window.scrollY * 0.5, // Example LERP effect
+          ease: "power3.out",
+        });
+      };
     const achievements = [
         {
             title: "Award for Excellence in [Your Field]",
@@ -25,7 +32,7 @@ function Achievements() {
             <h2 className="text-4xl font-bold mb-8 text-center">Achievements</h2>
             <div className="grid gap-8 lg:grid-cols-2">
                 {achievements.map((achievement, index) => (
-                    <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                    <div key={index} className="element-to-animate bg-white p-6 rounded-lg shadow-md">
                         <h3 className="text-2xl font-semibold mb-2">{achievement.title}</h3>
                         <p className="text-gray-700 mb-2">{achievement.description}</p>
                         <p className="text-gray-500 text-sm">{achievement.date}</p>
