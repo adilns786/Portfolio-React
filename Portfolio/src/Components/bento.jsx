@@ -1,6 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import itemsData from '../assets/data.json';
+import p1 from '../assets/Projects/Project1.png';
+import p2 from '../assets/Projects/Project2.png';
+import p3 from '../assets/Projects/Project3.png';
+import p4 from '../assets/Projects/Project4.png';
+import p5 from '../assets/Projects/Project5.png';
+
+
+const boxInfo = [
+    {
+        id:1,
+        image: p1,
+        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
+        title: "Project 1",
+        link: "https://airaware-f22c0.web.app/",
+        gitlink: "https://airaware-f22c0.web.app/",
+    },
+    {
+        id:2,
+        image: p2,
+        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
+        title: "Project 2",
+        link: "https://airaware-f22c0.web.app/",
+        gitlink: "https://airaware-f22c0.web.app/",
+    },
+    {
+        id:3,
+        image: p3,
+        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
+        title: "Project 3",
+        link: "https://airaware-f22c0.web.app/",
+        gitlink: "https://airaware-f22c0.web.app/",
+    },
+    {
+        id:4,
+        image: p4,
+        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
+        title: "Project 4",
+        link: "https://airaware-f22c0.web.app/",
+        gitlink: "https://airaware-f22c0.web.app/",
+    },
+    {
+        id:5,
+        image: p5,
+        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
+        title: "Project 5",
+        link: "https://airaware-f22c0.web.app/",
+        gitlink: "https://airaware-f22c0.web.app/",
+    },
+];
 
 const BentoGrid = () => {
     const [boxData, setBoxData] = useState([]);
@@ -53,6 +102,7 @@ const BentoGrid = () => {
             }}>
                 {Array.from({ length: totalCols * totalRows }, (_, index) => {
                     const currentBox = boxData.find(box => box.id === index + 1);
+                    const currentInfo = boxInfo.find(box => box.id === index + 1);
                     if (currentBox) {
                         // console.log(currentBox, index)
                         const { x, y, width, height } = currentBox;
@@ -69,10 +119,10 @@ const BentoGrid = () => {
                                     backgroundColor: "white",
                                 }}
                             >
-                                <img src={itemsData[index].img} className="block w-full h-full rounded-lg transition-opacity duration-300 ease-in-out group-hover:opacity-50 overflow-hidden" />
+                                <img src={boxInfo[index].image} className="block w-full h-full rounded-lg transition-opacity duration-300 ease-in-out group-hover:opacity-50 overflow-hidden" />
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                                     <div className="bg-black bg-opacity-75 text-white rounded-lg p-4">
-                                        {itemsData[index].text}
+                                        {boxInfo[index].info}
                                         {/* Additional content to show on hover */}
                                     </div>
                                 </div>

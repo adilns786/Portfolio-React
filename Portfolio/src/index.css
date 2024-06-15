@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+    scroll-behavior: smooth;
+}
 body{
     overflow-x: clip;
+    /* margin-left: 5vw; */
+    /* margin-right: 0; */
+    padding: 0;
+    background-color: #FCF6F1;
 }
+.floating-item {
+    @apply absolute rounded-full bg-blue-500;
+    width: 10px;
+    height: 10px;
+  }
