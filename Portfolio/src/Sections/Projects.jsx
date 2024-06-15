@@ -3,11 +3,13 @@ import { gsap } from 'gsap';
 import { Observer } from 'gsap/Observer';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+
 import p1 from '../assets/Projects/Project1.png';
 import p2 from '../assets/Projects/Project2.png';
 import p3 from '../assets/Projects/Project3.png';
 import p4 from '../assets/Projects/Project4.png';
 import p5 from '../assets/Projects/Project5.png';
+import useSlider from './useSlider';
 
 
 const boxInfo = [
@@ -56,51 +58,37 @@ const boxInfo = [
 gsap.registerPlugin(Observer, ScrollTrigger);
 
 const ProjectCard = () => {
-    const [current, setCurrent] = useState(0);
+    // const [current, setCurrent] = useState(0);
     const [prev, setprev] = useState(0);
 
     const timeoutRef = useRef(null);
     const containerRef = useRef(null);
     const imageRef = useRef(null);
     const textRef = useRef(null);
-    // const div2ref = useRef(null);
-
-    const sectionsRef = useRef([]);
-    const imagesRef = useRef([]);
-    const headingsRef = useRef([]);
-    const outerWrappersRef = useRef([]);
-    const innerWrappersRef = useRef([]);
-    const observerRef = useRef(null);
-    const currentIndex = useRef(-1);
-    const animating = useRef(false);
     const div2ref = useRef(null);
 
+    // const sectionsRef = useRef([]);
+    // const imagesRef = useRef([]);
+    // const headingsRef = useRef([]);
+    // const outerWrappersRef = useRef([]);
+    // const innerWrappersRef = useRef([]);
+    // const observerRef = useRef(null);
+    // const currentIndex = useRef(-1);
+    // const animating = useRef(false);
+    // const div2ref = useRef(null);
+    const {
+        current,
+        setCurrent,
+        nextSlide,
+        prevSlide,
+        sectionsRef,
+        imagesRef,
+        headingsRef,
+        outerWrappersRef,
+        innerWrappersRef
+    } = useSlider(boxInfo);
 
-    const resetTimeout = () => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-    };
-    useEffect(() => {
-        resetTimeout();
-        timeoutRef.current = setTimeout(
-            () =>{
-                setprev(current);
-                // console.log(current,prev)
-                setCurrent((prevIndex) => (prevIndex === boxInfo.length - 1 ? 0 : prevIndex + 1))
-            },
-            5000 // Change slide every 5 seconds
-        );
 
-        // const tl = gsap.timeline();
-        // tl.fromTo(containerRef.current, { opacity: 0 }, { opacity: 1, duration: 1 });
-        // tl.fromTo(imageRef.current, { x: -200, opacity: 0 }, { x: 0, opacity: 1, duration: 1 }, "-=0.5");
-        // tl.fromTo(textRef.current, { x: 200, opacity: 0 }, { x: 0, opacity: 1, duration: 1 }, "-=0.5");
-
-        return () => {
-            resetTimeout();
-        };
-    }, [current]);
     useEffect(() => {
         if (!div2ref.current) { return }
         const element = div2ref.current
@@ -109,13 +97,15 @@ const ProjectCard = () => {
                 y: -(window.innerHeight + window.innerWidth * 0.20), // Initial state: Move up slightly
                 x: (element.offsetWidth / 2),  // Initial state: Move right slightly
                 rotation: -50,
-                scale: 0.8,
+                scale: 1,
+                opacity:0.7,
             },
             {
                 y: 0, // Final state
                 x: 0, // Final state
                 rotation: 0, // Final 
                 scale: 1,
+                opacity:1,
                 scrollTrigger: {
                     trigger: element.previousElementSibling, // Trigger animation based on the previous sibling element
                     start: "top top", // When the top of the trigger element hits the top of the viewport
@@ -123,87 +113,118 @@ const ProjectCard = () => {
                     scrub: true, // Smooth scrubbing
                     markers: true, // Markers to visualize the start and end points (for debugging)
                     // onLeave: () => setproject(false), // Call setProject(true) when the scroll leaves the end position
+                    // once: true,
                 }
             }
         );
     }, []);
-    useEffect(() => {
-        const sections = sectionsRef.current;
-        const images = imagesRef.current;
-        const headings = headingsRef.current;
-        const outerWrappers = outerWrappersRef.current;
-        const innerWrappers = innerWrappersRef.current;
 
-        gsap.set(outerWrappers, { yPercent: 100 });
-        gsap.set(innerWrappers, { yPercent: -100 });
+    // const resetTimeout = () => {
+    //     if (timeoutRef.current) {
+    //         clearTimeout(timeoutRef.current);
+    //     }
+    // };
+    // useEffect(() => {
+    //     resetTimeout();
+    //     timeoutRef.current = setTimeout(
+    //         () => {
+    //             setprev(current);
+    //             console.log(current,prev)
+    //             setCurrent((prevIndex) => (prevIndex === boxInfo.length - 1 ? 0 : prevIndex + 1))
+    //         },
+    //         5000 // Change slide every 5 seconds
+    //     );
 
-        const wrap = gsap.utils.wrap(0, sections.length);
+    //     // const tl = gsap.timeline();
+    //     // tl.fromTo(containerRef.current, { opacity: 0 }, { opacity: 1, duration: 1 });
+    //     // tl.fromTo(imageRef.current, { x: -200, opacity: 0 }, { x: 0, opacity: 1, duration: 1 }, "-=0.5");
+    //     // tl.fromTo(textRef.current, { x: 200, opacity: 0 }, { x: 0, opacity: 1, duration: 1 }, "-=0.5");
 
-        const gotoSection = (index, direction) => {
-            index = wrap(index);
-            animating.current = true;
-            const fromTop = direction === -1;
-            const dFactor = fromTop ? -1 : 1;
-            const tl = gsap.timeline({
-                defaults: { duration: 1.25, ease: "power1.inOut" },
-                onComplete: () => animating.current = false
-            });
+    //     return () => {
+    //         resetTimeout();
+    //     };
+    // }, [current]);
+   
+    // useEffect(() => {
+    //     const sections = sectionsRef.current;
+    //     const images = imagesRef.current;
+    //     const headings = headingsRef.current;
+    //     const outerWrappers = outerWrappersRef.current;
+    //     const innerWrappers = innerWrappersRef.current;
 
-            if (prev >= 0) {
+    //     gsap.set(outerWrappers, { yPercent: 100 });
+    //     gsap.set(innerWrappers, { yPercent: -100 });
 
-                gsap.set(sections[prev], { zIndex: 0 });
-                tl.to(images[prev], { yPercent: -15 * dFactor })
-                    .set(sections[prev], { autoAlpha: 0 });
-                // console.log(`this is important2 prev--${prev} curr--${current}`)
+    //     const wrap = gsap.utils.wrap(0, sections.length);
 
-            }
+    //     const gotoSection = (index, direction) => {
+    //         index = wrap(index);
+    //         animating.current = true;
+    //         const fromTop = direction === -1;
+    //         const dFactor = fromTop ? -1 : 1;
+    //         const tl = gsap.timeline({
+    //             defaults: { duration: 1.25, ease: "power1.inOut" },
+    //             onComplete: () => animating.current = false
+    //         });
 
-            gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
-            tl.fromTo([outerWrappers[index], innerWrappers[index]], {
-                yPercent: i => i ? -100 * dFactor : 100 * dFactor
-            }, {
-                yPercent: 0
-            }, 0)
-                .fromTo(images[index], { yPercent: 15 * dFactor }, { yPercent: 0 }, 0)
-                .fromTo(headings[index], {
-                    autoAlpha: 0,
-                    yPercent: 150 * dFactor
-                }, {
-                    autoAlpha: 1,
-                    yPercent: 0,
-                    duration: 1,
-                    ease: "power2",
-                    stagger: {
-                        each: 0.02,
-                        from: "random"
-                    }
-                }, 0.2);
+    //         if (prev >= 0) {
 
-            currentIndex.current = index;
-        };
-        gotoSection(current, -1);
+    //             gsap.set(sections[prev], { zIndex: 0 });
+    //             tl.to(images[prev], { yPercent: -15 * dFactor })
+    //                 .set(sections[prev], { autoAlpha: 0 });
+    //             // console.log(`this is important2 prev--${prev} curr--${current}`)
 
-    }, [current]);
+    //         }
+
+    //         gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
+    //         tl.fromTo([outerWrappers[index], innerWrappers[index]], {
+    //             yPercent: i => i ? -100 * dFactor : 100 * dFactor
+    //         }, {
+    //             yPercent: 0
+    //         }, 0)
+    //             .fromTo(images[index], { yPercent: 15 * dFactor }, { yPercent: 0 }, 0)
+    //             .fromTo(headings[index], {
+    //                 autoAlpha: 0,
+    //                 yPercent: 150 * dFactor
+    //             }, {
+    //                 autoAlpha: 1,
+    //                 yPercent: 0,
+    //                 duration: 1,
+    //                 ease: "power2",
+    //                 stagger: {
+    //                     each: 0.02,
+    //                     from: "random"
+    //                 }
+    //             }, 0.2);
+
+    //         currentIndex.current = index;
+    //     };
+    //     gotoSection(current, -1);
+
+    // }, [current]);
 
 
 
-    const nextSlide = () => {
-        setprev(current);
-        setCurrent((prevIndex) => (prevIndex === boxInfo.length - 1 ? 0 : prevIndex + 1));
-    };
+    // const nextSlide = () => {
+    //     setprev(current);
+    //     setCurrent((prevIndex) => (prevIndex === boxInfo.length - 1 ? 0 : prevIndex + 1));
+    // };
 
-    const prevSlide = () => {
-        setprev(current);
-        setCurrent((prevIndex) => (prevIndex === 0 ? boxInfo.length - 1 : prevIndex - 1));
-    };
+    // const prevSlide = () => {
+    //     setprev(current);
+    //     setCurrent((prevIndex) => (prevIndex === 0 ? boxInfo.length - 1 : prevIndex - 1));
+    // };
+    
     return (
-        <section ref={div2ref} className=' border-blue-800'
+        <section ref={div2ref} className=' border-blue-800' id=''
             style={{
-                height: "100vh", width: "100vw", left: "0", top: "100vh", rotate: "0",
-                borderRadius: "10px", backgroundColor: "", position: 'absolute', zIndex: "50"
+                height: "100vh", width: "95vw", left: "0vw", top: "100vh", rotate: "0",
+                borderRadius: "10px", backgroundColor: "", position: 'absolute', zIndex: ""
+                ,marginLeft:"5vw"
             }}>
-            <div className="flex items-center justify-center h-screen  relative">
+            <div className="flex items-center justify-center h-screen  relative" >
                 <div ref={containerRef} className="relative w-11/12 h-5/6 bg-white rounded-lg shadow-lg overflow-hidden"
+                style={{boxShadow:"10px 10px 5px rgba(0,0,0,0.5),-2px -2px 5px rgba(0,0,0,0.5)"}}
                 >
                     {/* <div ref={imageRef} className="w-full h-fit absolute">
                         <img src={boxInfo[current].image} alt={boxInfo[current].title} className="w-full object-scale-down" />

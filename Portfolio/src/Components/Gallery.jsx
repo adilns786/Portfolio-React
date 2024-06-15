@@ -17,7 +17,7 @@ const AnimatedSections = () => {
     const outerWrappersRef = useRef([]);
     const innerWrappersRef = useRef([]);
     const observerRef = useRef(null);
-    const currentIndex = useRef(-1);
+    const currentIndex = useRef(0);
     const animating = useRef(false);
     const div2ref = useRef(null);
 
@@ -83,7 +83,6 @@ const AnimatedSections = () => {
                 });
 
                 if (currentIndex.current >= 0) {
-                    console.log("this is important")
                     gsap.set(sections[currentIndex.current], { zIndex: 0 });
                     tl.to(images[currentIndex.current], { yPercent: -15 * dFactor })
                         .set(sections[currentIndex.current], { autoAlpha: 0 });

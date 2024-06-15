@@ -6,7 +6,6 @@ import { useRef, useEffect } from 'react';
 // import ItemGrid from './item';
 // import Bgimage from '../assets/Animation.gif';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { transform } from 'framer-motion';
 import Projects from './Projects';
 
 function HomePage() {
@@ -28,7 +27,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className=" bg-faf3  sm:pb-8 lg:pb-12 overflow-visible" style={{ width: "100vw", height: "100vh", marginBottom: "100vh", marginLeft: "5vw" }}>
+    <div id='HomeSection' className=" bg-faf3  sm:pb-8 lg:pb-12 overflow-visible" style={{ width: "95vw", height: "100vh", marginBottom: "100vh", marginLeft: "5vw" }}>
      
       <section id='hero' className="m-0 p-0" style={{ width: "50vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
         {/* First div */}
@@ -55,6 +54,7 @@ function HomePage() {
 
 
         <Projects/>
+        <div id='ProjectSection'></div>
     </div>
   );
 }

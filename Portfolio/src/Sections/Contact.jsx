@@ -2,7 +2,7 @@ import React from "react";
 
 function Contact() {
     return (
-        <div className="flex flex-col md:flex-row bg-gray-100 p-6 md:p-12" style={{marginLeft:"5vw"}}>
+        <div id="ContactSection" className="flex flex-col md:flex-row bg-faf2 p-6 md:p-12" style={{marginLeft:"5vw"}}>
             {/* Left part */}
             <div className="flex flex-col justify-between md:w-1/2 mb-6 md:mb-0">
                 <div>
