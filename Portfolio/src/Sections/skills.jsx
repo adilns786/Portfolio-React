@@ -85,7 +85,7 @@ function Skills() {
         });
     };
     return (
-        <div id='SkillSection' className="relative  h-screen " style={{ marginLeft: "5vw" }} ref={containerRef}>
+        <div id='SkillSection' className="relative  h-screen font-adlam " style={{ marginLeft: "5vw" }} ref={containerRef}>
             <h2 className="text-4xl font-bold  text-left">My Skills</h2>
             <div className="flex justify-center items-center">
                 <div className="relative w-full h-screen flex justify-center items-center"> {/* Adjust height as needed */}
