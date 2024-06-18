@@ -216,7 +216,7 @@ const ProjectCard = () => {
     // };
     
     return (
-        <section ref={div2ref} className=' border-blue-800' id=''
+        <div ref={div2ref} className=' border-blue-800' id=''
             style={{
                 height: "100vh", width: "95vw", left: "0vw", top: "100vh", rotate: "0",
                 borderRadius: "10px", backgroundColor: "", position: 'absolute', zIndex: ""
@@ -282,7 +282,7 @@ const ProjectCard = () => {
                     &#10095;
                 </button>
             </div>
-        </section>
+        </div>
     );
 };
 
