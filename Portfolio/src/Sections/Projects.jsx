@@ -2,15 +2,28 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { Observer } from 'gsap/Observer';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 import p1 from '../assets/Projects/Project1.png';
 import p2 from '../assets/Projects/Project2.png';
 import p3 from '../assets/Projects/Project3.png';
-import p4 from '../assets/Projects/Project4.png';
+import p4 from '../assets/Projects/Project4-2.png';
 import p5 from '../assets/Projects/Project5.png';
 import useSlider from './useSlider';
+import { FaReact, FaNodeJs, FaPython, FaJsSquare, FaCss3 } from 'react-icons/fa';
+import { SiTailwindcss, SiFlutter, SiFlask } from 'react-icons/si';
 
+const skillIcons = {
+    JavaScript: <FaJsSquare className="text-yellow-500 text-4xl" />,
+    React: <FaReact className="text-blue-500 text-4xl" />,
+    Tailwind: <SiTailwindcss className="text-teal-400 text-4xl" />,
+    'Node.js': <FaNodeJs className="text-green-500 text-4xl" />,
+    Python: <FaPython className="text-blue-400 text-4xl" />,
+    Flutter: <SiFlutter className="text-blue-300 text-4xl" />,
+    Flask: <SiFlask className='text-blue-400 text-4xl' />,
+    CSS: <FaCss3 className='text-blue-500 text-4xl' />
+    // Add more icons as needed
+};
 
 const boxInfo = [
     {
@@ -20,6 +33,7 @@ const boxInfo = [
         title: "AirAware",
         link: "https://airaware-f22c0.web.app/",
         gitlink: "https://airaware-f22c0.web.app/",
+        tech: ['React', 'Python', 'Tailwind'],
     },
     {
         id: 2,
@@ -28,6 +42,7 @@ const boxInfo = [
         title: "Trip Sync",
         link: "https://air-monitor-5132e.web.app/",
         gitlink: "https://airaware-f22c0.web.app/",
+        tech: ['React', 'CSS', 'JavaScript'],
     },
     {
         id: 3,
@@ -36,23 +51,25 @@ const boxInfo = [
         title: "AQI Monitor",
         link: "https://air-monitor-5132e.web.app/",
         gitlink: "https://airaware-f22c0.web.app/",
+        tech: ['Flutter', 'Python', 'Flask'],
+
     },
-    {
-        id: 4,
-        image: p2,
-        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
-        title: "Project 4",
-        link: "https://airaware-f22c0.web.app/",
-        gitlink: "https://airaware-f22c0.web.app/",
-    },
-    {
-        id: 5,
-        image: p1,
-        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
-        title: "Project 5",
-        link: "https://airaware-f22c0.web.app/",
-        gitlink: "https://airaware-f22c0.web.app/",
-    },
+    // {
+    //     id: 4,
+    //     image: p2,
+    //     info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
+    //     title: "Project 4",
+    //     link: "https://airaware-f22c0.web.app/",
+    //     gitlink: "https://airaware-f22c0.web.app/",
+    // },
+    // {
+    //     id: 5,
+    //     image: p1,
+    //     info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
+    //     title: "Project 5",
+    //     link: "https://airaware-f22c0.web.app/",
+    //     gitlink: "https://airaware-f22c0.web.app/",
+    // },
 ];
 
 gsap.registerPlugin(Observer, ScrollTrigger);
@@ -76,6 +93,18 @@ const ProjectCard = () => {
     // const currentIndex = useRef(-1);
     // const animating = useRef(false);
     // const div2ref = useRef(null);
+    const [screen, setscreen] = useState(window.innerWidth);
+    const handleResize = () => {
+        setscreen(window.innerWidth);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     const {
         current,
         setCurrent,
@@ -85,12 +114,13 @@ const ProjectCard = () => {
         imagesRef,
         headingsRef,
         outerWrappersRef,
-        innerWrappersRef
+        innerWrappersRef,
     } = useSlider(boxInfo);
 
 
     useEffect(() => {
-        if (!div2ref.current) { return }
+        if (!div2ref.current || screen<480) { return }
+
         const element = div2ref.current
         gsap.fromTo(element,
             {
@@ -98,20 +128,20 @@ const ProjectCard = () => {
                 x: (element.offsetWidth / 2),  // Initial state: Move right slightly
                 rotation: -50,
                 scale: 1,
-                opacity:0.7,
+                opacity: 1,
             },
             {
                 y: 0, // Final state
                 x: 0, // Final state
                 rotation: 0, // Final 
                 scale: 1,
-                opacity:1,
+                opacity: 1,
                 scrollTrigger: {
                     trigger: element.previousElementSibling, // Trigger animation based on the previous sibling element
                     start: "top top", // When the top of the trigger element hits the top of the viewport
                     end: "bottom top", // When the bottom of the trigger element hits the top of the viewport
                     scrub: true, // Smooth scrubbing
-                    markers: true, // Markers to visualize the start and end points (for debugging)
+                    // markers: true, // Markers to visualize the start and end points (for debugging)
                     // onLeave: () => setproject(false), // Call setProject(true) when the scroll leaves the end position
                     // once: true,
                 }
@@ -144,7 +174,7 @@ const ProjectCard = () => {
     //         resetTimeout();
     //     };
     // }, [current]);
-   
+
     // useEffect(() => {
     //     const sections = sectionsRef.current;
     //     const images = imagesRef.current;
@@ -214,17 +244,17 @@ const ProjectCard = () => {
     //     setprev(current);
     //     setCurrent((prevIndex) => (prevIndex === 0 ? boxInfo.length - 1 : prevIndex - 1));
     // };
-    
+
     return (
         <div ref={div2ref} className=' border-blue-800' id=''
             style={{
-                height: "100vh", width: "95vw", left: "0vw", top: "100vh", rotate: "0",
+                height: "100vh",  left: "0vw", top: "105vh", rotate: "0",
                 borderRadius: "10px", backgroundColor: "", position: 'absolute', zIndex: ""
-                ,marginLeft:"5vw"
+                ,width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`
             }}>
             <div className="flex items-center justify-center h-screen  relative" >
-                <div ref={containerRef} className="relative w-11/12 h-5/6 bg-white rounded-lg shadow-lg overflow-hidden"
-                style={{boxShadow:"10px 10px 5px rgba(0,0,0,0.5),-2px -2px 5px rgba(0,0,0,0.5)"}}
+                <div ref={containerRef} className="relative w-11/12 h-5/6 bg-white rounded-lg shadow-lg overflow-hidden "
+                    style={{ boxShadow: "5px 5px 5px rgba(0,0,0,0.5),-2px -2px 5px rgba(0,0,0,0.5)" }}
                 >
                     {/* <div ref={imageRef} className="w-full h-fit absolute">
                         <img src={boxInfo[current].image} alt={boxInfo[current].title} className="w-full object-scale-down" />
@@ -254,12 +284,20 @@ const ProjectCard = () => {
                                         className="bg flex items-center justify-center absolute w-full h-full top-0 bg-cover bg-center"
                                         style={{ backgroundImage: `url(${section.image})` }}
                                     >
-                                        <div ref={textRef} className="section-text p-8 " >
-                                            <h2 className="text-3xl font-bold mb-4">{section.title}</h2>
-                                            <p className="text-gray-700 mb-4">{section.info}</p>
-                                            <a href={section.link} className="text-blue-500 hover:underline">Demo Link</a>
-                                            <br />
-                                            <a href={section.gitlink} className="text-blue-500 hover:underline">GitHub Link</a>
+                                        <div className="overlay absolute w-full h-full top-0 left-0 bg-beta opacity-30 pointer-events-none"></div>
+                                        <div className="absolute section-text p-8 w-full h-full text-faf3">
+                                            <h2 ref={textRef} className="absolute top-4 left-4 text-3xl font-bold mb-4 bg-beta p-3  text-faf rounded-lg ">{section.title}</h2>
+                                            {/* <p className="absolute top-16 left-4  mb-4 bg-beta p-1  text-faf rounded-lg">{section.info}</p> */}
+                                            <button className='flex items-center justify-center absolute bottom-4 right-4 bg-beta p-3 pr-8 text-faf rounded-lg hover:underline' >
+                                                <a href={section.link} className="">Live Link</a>
+                                                <DotLottieReact
+                                                    src='https://lottie.host/c9fbabcb-9783-4879-8705-a04c9512cf29/MWO9CPEWI9.lottie'
+                                                    style={{ position: "absolute", right: "0px", width: '40px', height: '40px' }}
+                                                    loop
+                                                    autoplay
+                                                />
+                                            </button>
+                                            <a href={section.gitlink} className="absolute bottom-4 left-4 bg-beta p-3  text-faf rounded-lg hover:underline">GitHub Link</a>
                                         </div>
                                     </div>
                                 </div>
@@ -270,14 +308,14 @@ const ProjectCard = () => {
                 <button
                     onClick={prevSlide}
                     style={{ zIndex: "5" }}
-                    className="absolute left-20 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full focus:outline-none"
+                    className="absolute left-20 top-1/2 transform -translate-y-1/2 bg-beta text-white p-2 rounded-full focus:outline-none"
                 >
                     &#10094;
                 </button>
                 <button
                     onClick={nextSlide}
                     style={{ zIndex: "5" }}
-                    className="absolute right-20 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full focus:outline-none"
+                    className="absolute right-20 top-1/2 transform -translate-y-1/2 bg-beta text-white p-2 rounded-full focus:outline-none"
                 >
                     &#10095;
                 </button>

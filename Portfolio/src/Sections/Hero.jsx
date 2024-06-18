@@ -9,9 +9,19 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Projects from './Projects';
 
 function HomePage() {
-
+  const [screen, setscreen] = useState(window.innerWidth);
   const playerRef = useRef(null);
+  const handleResize = () => {
+    setscreen(window.innerWidth);
+  };
 
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   useEffect(() => {
     const player = playerRef.current;
 
@@ -26,15 +36,22 @@ function HomePage() {
     }
   }, []);
 
+
   return (
-    <section id='HomeSection' className=" bg-faf3  sm:pb-8 lg:pb-12 overflow-visible font-adlam" style={{ width: "95vw", height: "100vh", marginBottom: "100vh", marginLeft: "5vw" }}>
-     
-      <section id='hero' className="m-0 p-0" style={{ width: "50vw", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
+    <section id='HomeSection' className=" overflow-y-visible overflow-x-hidden font-adlam" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}}>
+
+      <section id='hero' className="m-0 p-0 relative items-center justify-center flex h-screen w-1/2
+      xs:w-full" >
         {/* First div */}
-        <div className=" flex flex-col justify-center sm:mb-12 lg:mb-0 font-adlam " style={{ position: "relative", zIndex: 1, maxWidth: "50%", width: "fit-content" }}>
-          <h6 className="text-5xl font-bold text-charlie sm:text-7xl md:mb-8 md:text-6xl" style={{ margin: "10px", padding: "0" }}>Hi, I'm</h6>
-          <h1 className="mb-4 text-9xl font-bold text-beta sm:text-9xl md:mb-8 md:text-8xl">Aadil</h1>
-          <p className="max-w-md leading-relaxed text-charlie xl:text-lg">Fullstack Developer and <br />ML Enthusiast</p>
+        <div className=" flex flex-col justify-center mb-0 font-adlam relative w-fit  
+        xs:items-center "
+         style={{ zIndex: 1}}>
+          <h6 className="text-5xl font-bold text-charlie sm:text-7xl md:mb-8 md:text-6xl m-1 p-0
+          xs:text-2xl xs:m-0" >Hi, I'm</h6>
+          <h1 className="mb-4 text-9xl font-bold text-beta sm:text-9xl md:mb-8 md:text-8xl
+         xs:text-7xl ">Aadil</h1>
+          <p className="max-w-md leading-relaxed text-charlie xl:text-lg
+          xs:text-sm xs:items-center xs:flex xs:flex-col xs:justify-center"><p>Fullstack Developer and </p><p>ML Enthusiast</p></p>
         </div>
 
         {/* Second div (Lottie animation) */}
@@ -53,8 +70,8 @@ function HomePage() {
       </section> */}
 
 
-        <Projects/>
-        <section id='ProjectSection'></section>
+      <Projects />
+      <section id='ProjectSection' className='Title' style={{marginBottom:"90vh"}}>{"<"}PROJECTS/{">"}</section>
     </section>
   );
 }

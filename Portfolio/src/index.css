@@ -11,10 +11,42 @@ body{
     /* margin-left: 5vw; */
     /* margin-right: 0; */
     padding: 0;
-    background-color: #FCF6F1;
+    /* background-color: #FCF6F1; */
+    background-color: #F8EDE2
 }
 .floating-item {
     @apply absolute rounded-full bg-blue-500;
     width: 10px;
     height: 10px;
   }
+
+.Title{
+    font-size: 2.3rem;
+    font-weight: bolder;
+    margin: 0;
+    margin-left: 5vw;
+    /* margin-bottom: 5vh; */
+}
+.sub-title{
+    font-size: 1.3rem;
+    font-weight: lighter;
+    margin: 0;
+    margin-left: 5vw;
+}
+
+@media (max-width: 480px) {
+    
+.Title{
+    font-size: 1.6rem;
+    font-weight: bolder;
+    margin: 0;
+    margin-left: 5vw;
+    /* margin-bottom: 5vh; */
+}
+.sub-title{
+    font-size: 0.8rem;
+    font-weight: lighter;
+    margin: 0;
+    margin-left: 5vw;
+}
+}

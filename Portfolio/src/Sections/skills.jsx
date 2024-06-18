@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect,useState, useRef } from 'react';
 import { gsap } from 'gsap';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -12,11 +12,23 @@ const skillIcons = {
     'Node.js': <FaNodeJs className="text-green-500 text-4xl" />,
     Python: <FaPython className="text-blue-400 text-4xl" />,
     Flutter: <SiFlutter className="text-blue-300 text-4xl" />,
-    Flask:<SiFlask className='text-blue-400 text-4xl'/>,
-    CSS:<FaCss3 className='text-blue-500 text-4xl'/>
+    Flask: <SiFlask className='text-blue-400 text-4xl' />,
+    CSS: <FaCss3 className='text-blue-500 text-4xl' />
     // Add more icons as needed
 };
 function Skills() {
+    const [screen, setscreen] = useState(window.innerWidth);
+    const handleResize = () => {
+        setscreen(window.innerWidth);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     const skills = [
         { name: 'JavaScript', level: 90 },
         { name: 'React', level: 70 },
@@ -60,7 +72,7 @@ function Skills() {
 
         const container = containerRef.current;
         const center = { x: container.clientWidth / 2, y: container.clientHeight / 2 };
-        const radius = 200; // Radius of the circle layout
+        const radius = screen<480 ? 100 : 200; // Radius of the circle layout
 
         gsap.utils.toArray('.skill-item').forEach((item, index) => {
             const angle = (index / skills.length) * Math.PI * 2;
@@ -85,13 +97,21 @@ function Skills() {
         });
     };
     return (
-        <div id='SkillSection' className="relative  h-screen font-adlam " style={{ marginLeft: "5vw" }} ref={containerRef}>
-            <h2 className="text-4xl font-bold  text-left">My Skills</h2>
+        <div id='SkillSection' className="relative  h-screen font-adlam 
+        xs:h-4/6" 
+        style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}} ref={containerRef}>
+            <div className='absolute top-0 left-0'>
+                <div className="Title ">{"<"}SKILLS/{">"}</div>
+                <div className='sub-title'>//Tech Stack I Use ...</div>
+            </div>
+
             <div className="flex justify-center items-center">
                 <div className="relative w-full h-screen flex justify-center items-center"> {/* Adjust height as needed */}
                     {skills.map((skill, index) => (
                         <div key={index} className="skill-item absolute flex flex-col items-center opacity-0">
-                            <div className="w-24 h-24 relative" style={{borderRadius:"999px", backgroundColor:"" ,boxShadow:"7px 7px 5px rgba(0, 0, 0, 0.3) "}}>
+                            <div className="w-24 h-24 relative
+                            xs:w-14 xs:h-14"
+                             style={{ borderRadius: "999px", backgroundColor: "", boxShadow: "7px 7px 5px rgba(0, 0, 0, 0.3) " }}>
                                 <CircularProgressbar
                                     value={skill.level}
                                     // text={`${skill.level}%`}
@@ -103,11 +123,12 @@ function Skills() {
                                     })}
                                     ref={el => skillRefs.current[index] = el}
                                 />
-                                <div className="absolute inset-0 flex justify-center items-center " style={{transform:"scale(1.4)"}}>
+                                <div className="absolute inset-0 flex justify-center items-center " style={{ transform: `${screen<480 ? "scale(0.8)":"scale(1.4)"}` }}>
                                     {skillIcons[skill.name]}
                                 </div>
                             </div>
-                            <h3 className="text-xl font-semibold mt-2">{skill.name}</h3>
+                            <h3 className="text-xl font-semibold mt-2
+                            xs:text-sm xs:mt-0 ">{skill.name}</h3>
                         </div>
                     ))}
 

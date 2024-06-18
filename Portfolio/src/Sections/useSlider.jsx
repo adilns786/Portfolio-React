@@ -108,7 +108,7 @@ const useSlider = (boxInfo) => {
                     each: 0.02,
                     from: "random"
                 }
-            }, 0.2);
+            }, 0.3);
 
         currentIndex.current = index;
     };
