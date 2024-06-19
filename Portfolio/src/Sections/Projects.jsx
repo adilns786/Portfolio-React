@@ -32,7 +32,7 @@ const boxInfo = [
         info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
         title: "AirAware",
         link: "https://airaware-f22c0.web.app/",
-        gitlink: "https://airaware-f22c0.web.app/",
+        gitlink: "https://github.com/AadilShah786/AirAware",
         tech: ['React', 'Python', 'Tailwind'],
     },
     {
@@ -40,8 +40,8 @@ const boxInfo = [
         image: p4,
         info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
         title: "Trip Sync",
-        link: "https://air-monitor-5132e.web.app/",
-        gitlink: "https://airaware-f22c0.web.app/",
+        link: null,
+        gitlink: "https://github.com/AadilShah786/TripSync-Travel-Itinerary--Syrus24",
         tech: ['React', 'CSS', 'JavaScript'],
     },
     {
@@ -50,7 +50,7 @@ const boxInfo = [
         info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
         title: "AQI Monitor",
         link: "https://air-monitor-5132e.web.app/",
-        gitlink: "https://airaware-f22c0.web.app/",
+        gitlink: "https://github.com/AadilShah786/Air-monitoring-react-",
         tech: ['Flutter', 'Python', 'Flask'],
 
     },
@@ -119,7 +119,7 @@ const ProjectCard = () => {
 
 
     useEffect(() => {
-        if (!div2ref.current || screen<480) { return }
+        if (!div2ref.current || screen < 480) { return }
 
         const element = div2ref.current
         gsap.fromTo(element,
@@ -248,9 +248,9 @@ const ProjectCard = () => {
     return (
         <div ref={div2ref} className=' border-blue-800' id=''
             style={{
-                height: "100vh",  left: "0vw", top: "105vh", rotate: "0",
+                height: "100vh", left: "0vw", rotate: "0",
                 borderRadius: "10px", backgroundColor: "", position: 'absolute', zIndex: ""
-                ,width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`
+                , width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`, top: `${screen > 480 ? '105vh' : '100vh'}`
             }}>
             <div className="flex items-center justify-center h-screen  relative" >
                 <div ref={containerRef} className="relative w-11/12 h-5/6 bg-white rounded-lg shadow-lg overflow-hidden "
@@ -288,15 +288,17 @@ const ProjectCard = () => {
                                         <div className="absolute section-text p-8 w-full h-full text-faf3">
                                             <h2 ref={textRef} className="absolute top-4 left-4 text-3xl font-bold mb-4 bg-beta p-3  text-faf rounded-lg ">{section.title}</h2>
                                             {/* <p className="absolute top-16 left-4  mb-4 bg-beta p-1  text-faf rounded-lg">{section.info}</p> */}
-                                            <button className='flex items-center justify-center absolute bottom-4 right-4 bg-beta p-3 pr-8 text-faf rounded-lg hover:underline' >
-                                                <a href={section.link} className="">Live Link</a>
-                                                <DotLottieReact
-                                                    src='https://lottie.host/c9fbabcb-9783-4879-8705-a04c9512cf29/MWO9CPEWI9.lottie'
-                                                    style={{ position: "absolute", right: "0px", width: '40px', height: '40px' }}
-                                                    loop
-                                                    autoplay
-                                                />
-                                            </button>
+                                            {section.link &&
+                                                <button className='flex items-center justify-center absolute bottom-4 right-4 bg-beta p-3 pr-8 text-faf rounded-lg hover:underline' >
+                                                    <a href={section.link} className="">Live Link</a>
+                                                    <DotLottieReact
+                                                        src='https://lottie.host/c9fbabcb-9783-4879-8705-a04c9512cf29/MWO9CPEWI9.lottie'
+                                                        style={{ position: "absolute", right: "0px", width: '40px', height: '40px' }}
+                                                        loop
+                                                        autoplay
+                                                    />
+                                                </button>
+                                            }
                                             <a href={section.gitlink} className="absolute bottom-4 left-4 bg-beta p-3  text-faf rounded-lg hover:underline">GitHub Link</a>
                                         </div>
                                     </div>
@@ -308,14 +310,16 @@ const ProjectCard = () => {
                 <button
                     onClick={prevSlide}
                     style={{ zIndex: "5" }}
-                    className="absolute left-20 top-1/2 transform -translate-y-1/2 bg-beta text-white p-2 rounded-full focus:outline-none"
+                    className="absolute left-20 top-1/2 transform -translate-y-1/2 bg-beta text-white p-2 rounded-full focus:outline-none 
+                    xs:left-5"
                 >
                     &#10094;
                 </button>
                 <button
                     onClick={nextSlide}
                     style={{ zIndex: "5" }}
-                    className="absolute right-20 top-1/2 transform -translate-y-1/2 bg-beta text-white p-2 rounded-full focus:outline-none"
+                    className="absolute right-20 top-1/2 transform -translate-y-1/2 bg-beta text-white p-2 rounded-full focus:outline-none
+                    xs:right-5"
                 >
                     &#10095;
                 </button>

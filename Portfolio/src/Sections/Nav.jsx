@@ -69,17 +69,17 @@ function NavBar() {
     return (
         <header
             ref={navbarRef}
-            className="bg-charlie fixed w-12  left-0 top-0 z-40 h-screen  flex flex-col items-center justify-between transition-all duration-300 font-adlam
+            className="bg-charlie fixed w-14  left-0 top-0 z-40 h-screen  flex flex-col items-center justify-between transition-all duration-300 font-adlam
         xs:flex-row xs:w-screen xs:h-12"
             style={{ overflowX: "visible" }}
         >
             <div className="mt-5  xs:mt-0">
-                <a href="/" className="flex flex-col items-center justify-center text-white text-3xl font-bold gap-2
+                <a href="https://adilnshah.web.app/" className="flex flex-col items-center justify-center text-white text-3xl font-bold gap-2
                 xs:flex-row">
                     <img src={Profile} className='w-12
-                    xs:w-10'
+                    xs:w-10 xs:ml-1'
                      alt="Profile" />
-                    <p className='text-base'>Aadil</p>
+                    <p className='text-base text-faf'>AS</p>
                 </a>
             </div>
             <div className='relative h-2/6'>

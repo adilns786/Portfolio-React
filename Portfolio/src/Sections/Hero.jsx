@@ -7,7 +7,7 @@ import { useRef, useEffect } from 'react';
 // import Bgimage from '../assets/Animation.gif';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Projects from './Projects';
-
+import Resume from '../assets/resume.pdf';
 function HomePage() {
   const [screen, setscreen] = useState(window.innerWidth);
   const playerRef = useRef(null);
@@ -38,20 +38,37 @@ function HomePage() {
 
 
   return (
-    <section id='HomeSection' className=" overflow-y-visible overflow-x-hidden font-adlam" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}}>
+    <section id='HomeSection' className=" overflow-y-visible overflow-x-hidden font-adlam" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
 
       <section id='hero' className="m-0 p-0 relative items-center justify-center flex h-screen w-1/2
       xs:w-full" >
         {/* First div */}
         <div className=" flex flex-col justify-center mb-0 font-adlam relative w-fit  
         xs:items-center "
-         style={{ zIndex: 1}}>
-          <h6 className="text-5xl font-bold text-charlie sm:text-7xl md:mb-8 md:text-6xl m-1 p-0
-          xs:text-2xl xs:m-0" >Hi, I'm</h6>
-          <h1 className="mb-4 text-9xl font-bold text-beta sm:text-9xl md:mb-8 md:text-8xl
+          style={{ zIndex: 1 }}>
+          <h6 className="text-3xl font-bold text-charlie 
+          xs:text-2xl xs:m-0" >Hii, I'm</h6>
+          <h1 className=" text-9xl font-bold text-beta 
          xs:text-7xl ">Aadil</h1>
-          <p className="max-w-md leading-relaxed text-charlie xl:text-lg
+          <p className="  text-charlie text-lg font-bold
           xs:text-sm xs:items-center xs:flex xs:flex-col xs:justify-center"><p>Fullstack Developer and </p><p>ML Enthusiast</p></p>
+          <div className='flex justify-around mt-4 xs:gap-2'>
+          <a
+            href="#ContactSection"
+            className="  bg-beta p-3  text-faf rounded-lg hover:scale-110 hover:rounded-2xl transition-all duration-100 ease-in-out 
+            xs:p-2 xs:h-fit xs:w-fit"
+          >
+            Contact
+          </a>
+          <a
+            href={Resume}
+            download="AadilResume.pdf"
+            className="  bg-beta p-3  text-faf rounded-lg hover:scale-110 hover:rounded-2xl transition-all duration-100 ease-in-out
+            xs:p-2 xs:h-fit xs:w-fit"
+          >
+            Resume
+          </a>
+          </div>
         </div>
 
         {/* Second div (Lottie animation) */}
@@ -71,7 +88,7 @@ function HomePage() {
 
 
       <Projects />
-      <section id='ProjectSection' className='Title' style={{marginBottom:"90vh"}}>{"<"}PROJECTS/{">"}</section>
+      <section id='ProjectSection' className='Title' style={{ marginBottom: "90vh" }}>{"<"}PROJECTS/{">"}</section>
     </section>
   );
 }

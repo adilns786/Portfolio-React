@@ -98,7 +98,7 @@ function Skills() {
     };
     return (
         <div id='SkillSection' className="relative  h-screen font-adlam 
-        xs:h-4/6" 
+        xs:h-fit" 
         style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}} ref={containerRef}>
             <div className='absolute top-0 left-0'>
                 <div className="Title ">{"<"}SKILLS/{">"}</div>
@@ -106,7 +106,9 @@ function Skills() {
             </div>
 
             <div className="flex justify-center items-center">
-                <div className="relative w-full h-screen flex justify-center items-center"> {/* Adjust height as needed */}
+                <div className="relative w-full h-screen flex justify-center items-center
+                xs:h-80 xs:mt-12 xs:mb-0"> 
+                {/* Adjust height as needed */}
                     {skills.map((skill, index) => (
                         <div key={index} className="skill-item absolute flex flex-col items-center opacity-0">
                             <div className="w-24 h-24 relative

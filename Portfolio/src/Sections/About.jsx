@@ -1,8 +1,10 @@
-import React, { useRef, useEffect ,useState} from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { TextPlugin } from "gsap/dist/TextPlugin";
 import profile from '../assets/Profile/profile-pic1.png'
+import { TypeAnimation } from 'react-type-animation';
+import { useInView } from 'react-intersection-observer';
 
 // gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollTrigger);
@@ -24,8 +26,13 @@ function AboutMe() {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+    const [ref, inView] = useInView({
+        triggerOnce: true, // Trigger only once
+        threshold: 0.5, // Trigger when 50% of the component is in view
+    });
+
     useEffect(() => {
-        if(screen<480)return;
+        if (screen < 480) return;
         gsap.fromTo(
             imageRef.current,
             {
@@ -72,43 +79,44 @@ function AboutMe() {
 
     }, []);
 
-  
+
     useEffect(() => {
         // Ensure GSAP and TextPlugin are loaded
         return
         if (!gsap || !TextPlugin) return;
-    
+
         // Initialize intersection observer
         const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                // Animation using GSAP
-                gsap.fromTo(
-                  titleRef.current,
-                  { text: '<ABOUT ME>' },
-                  { text: '</ABOUT ME>', duration: 1, ease: 'power3.out' }
-                );
-              }
-            });
-          },
-          { threshold: 0.5 } // Adjust threshold as needed
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Animation using GSAP
+                        gsap.fromTo(
+                            titleRef.current,
+                            { text: '<ABOUT ME>' },
+                            { text: '</ABOUT ME>', duration: 1, ease: 'power3.out' }
+                        );
+                    }
+                });
+            },
+            { threshold: 0.5 } // Adjust threshold as needed
         );
-    
+
         // Start observing the titleRef
         observer.observe(titleRef.current);
-    
+
         // Cleanup
         return () => observer.disconnect();
-      }, []);
+    }, []);
     return (
-        <section id="AboutSection" ref={sectionRef} className="font-adlam" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}}>
+        <section id="AboutSection" ref={sectionRef} className="font-adlam" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
             <div className="Title" ref={titleRef}>{"<"}ABOUT ME/{">"}</div>
             <div className="sub-title">//A brief introduction about me... </div>
 
             <div className="flex flex-col md:flex-row items-center  py-12 px-6 md:px-12 lg:px-24">
                 {/* Image Section */}
-                <div ref={imageRef} className="md:w-1/3 mb-6 md:mb-0">
+                <div ref={imageRef} className="md:w-1/3 mb-6 md:mb-0 
+                xs:w-3/5 ">
                     <img
                         src={profile}
                         alt="Your Name"
@@ -116,22 +124,25 @@ function AboutMe() {
                         style={{ border: "1pt solid rgba(7, 6, 15,0.7)", boxShadow: "3px 3px 2px rgba(7, 6, 15,0.7)" }}
                     />
                 </div>
-                {/* Text Section */}
-                <div className="md:w-2/3 md:pl-12 font-adlam">
-                    <p className="textref text-gray-700  mb-4 xs:text-sm">
-                        Hello! I'm a third-year Computer Science Engineering student with a passion for creating innovative web applications and diving into the world of machine learning. Throughout my academic journey, I've actively participated in hackathons and contributed to my college's Computer Society of India (CSI) chapter.
-
-                    </p>
-                    <p className="textref text-gray-700  mb-4 xs:text-sm">
-
-                        I specialize in developing dynamic and responsive applications using technologies like React, Tailwind CSS, GSAP, Flutter, Flask, and Python. Currently, I'm expanding my expertise in machine learning, working on exciting projects in Jupyter Notebook.
-
-                    </p>
-                    <p className="textref text-gray-700  mb-4 xs:text-sm">
-
-                        I love solving complex problems and transforming ideas into functional, aesthetically pleasing applications. If you're interested in collaborating or discussing tech, feel free to reach out!
-                    </p>
-
+                <div ref={ref} className="md:w-2/3 md:pl-12 font-adlam">
+                    {inView && (
+                        <TypeAnimation
+                            sequence={[
+                                `Hello! I'm a third-year Computer Science Engineering student with a passion for creating innovative web applications and diving into the world of machine learning. Throughout my academic journey, I've actively participated in hackathons and contributed to my college's Computer Society of India (CSI) chapter.\n 
+                                I specialize in developing dynamic and responsive applications using technologies like React, Tailwind CSS, GSAP, Flutter, Flask, and Python. Currently, I'm expanding my expertise in machine learning, working on exciting projects in Jupyter Notebook.\n
+                                I love solving complex problems and transforming ideas into functional, aesthetically pleasing applications. If you're interested in collaborating or discussing tech, feel free to reach out!`,
+                                () => {
+                                    // console.log('Sequence completed');
+                                },
+                            ]}
+                            speed={100}
+                            wrapper="span"
+                            cursor={true}
+                            // repeat={none}
+                            className=" text-gray-700  mb-4 xs:text-sm"
+                            style={{ whiteSpace: 'pre-line', display: 'inline-block' }}
+                        />
+                    )}
                     {/* <h3  className="textref text-2xl font-semibold mb-2">Skills & Expertise</h3> */}
                     {/* <ul className="textref list-disc list-inside mb-4 text-gray-700">
                         <li>Skill 1</li>
@@ -139,14 +150,17 @@ function AboutMe() {
                         <li>Skill 3</li>
                         <li>Skill 4</li>
                     </ul> */}
-                    <h3 className="textref text-2xl font-semibold mb-2">Education & Certifications</h3>
-                    <ul className="textref list-disc list-inside mb-4 text-gray-700">
+                    <h3 className="textref2 text-2xl font-semibold mb-2 
+                    xs:text-lg">Education & Certifications</h3>
+                    <ul className="textref2 list-disc list-inside mb-4 text-gray-700">
                         <li>CGPA: 9.23</li>
                         {/* <li>HSC: 84.3%</li> */}
                         {/* <li>SSC: 92%</li> */}
                     </ul>
                 </div>
+
             </div>
+
         </section>
     );
 }
