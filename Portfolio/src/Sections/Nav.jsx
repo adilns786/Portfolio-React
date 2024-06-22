@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { FaHome, FaProjectDiagram, FaInfo, FaEnvelope, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
-import Profile from '../assets/Profile/profile-pic.png';
-
+// import Profile from '../assets/Profile/profile-pic.png';
+import { AboutMeData, SocialData } from '../assets/data';
 function NavBar() {
     const navbarRef = useRef(null);
     const navbuttonRef = useRef(null);
@@ -74,34 +74,27 @@ function NavBar() {
             style={{ overflowX: "visible" }}
         >
             <div className="mt-5  xs:mt-0">
-                <a href="https://adilnshah.web.app/" className="flex flex-col items-center justify-center text-white text-3xl font-bold gap-2
+                <a href={SocialData.Portfolio} className="flex flex-col items-center justify-center text-white text-3xl font-bold gap-2
                 xs:flex-row">
-                    <img src={Profile} className='w-12
+                    <img src={AboutMeData.Profile2} className='w-12
                     xs:w-10 xs:ml-1'
-                     alt="Profile" />
+                        alt="Profile" />
                     <p className='text-base text-faf'>AS</p>
                 </a>
             </div>
             <div className='relative h-2/6'>
                 <div ref={navbuttonRef} className="flex flex-col items-center justify-start h-full absolute left-0 top-0 opacity-0 px-4 rounded-r-xl bg-charlie 
                 xs:opacity-0">
-                    {/* <a href="#HomeSection" className={`text-white  flex items-center space-x-3 group relative w-full`}>
-              <span className=" text-lg font-semibold flex items-center space-x-3 group relative w-full">Home</span>
-            </a> */}
                     <a href="#HomeSection" className={`text-white h-1/4 flex items-center justify-center space-x-3 group relative w-full ${activeSection === 'SkillSection' ? 'text-active' : ''}`}>
-                        {/* <FaProjectDiagram className="text-2xl absolute left-1/2 transform -translate-x-1/2" /> */}
                         <span className=" text-lg font-semibold ">Home</span>
                     </a>
                     <a href="#ProjectSection" className={`text-white h-1/4 flex items-center justify-center space-x-3 group relative w-full ${activeSection === 'SkillSection' ? 'text-active' : ''}`}>
-                        {/* <FaProjectDiagram className="text-2xl absolute left-1/2 transform -translate-x-1/2" /> */}
                         <span className=" text-lg font-semibold ">Projects</span>
                     </a>
                     <a href="#AboutSection" className={`text-white h-1/4 flex items-center justify-center space-x-3 group relative w-full ${activeSection === 'AboutSection' ? 'text-active' : ''}`}>
-                        {/* <FaInfo className="text-2xl absolute left-1/2 transform -translate-x-1/2" /> */}
                         <span className=" text-lg font-semibold ">About</span>
                     </a>
                     <a href="#ContactSection" className={`text-white h-1/4 flex items-center justify-center space-x-3 group relative w-full ${activeSection === 'ContactSection' ? 'text-active' : ''}`}>
-                        {/* <FaEnvelope className="text-2xl absolute left-1/2 transform -translate-x-1/2" /> */}
                         <span className="text-lg font-semibold">Contact</span>
                     </a>
                 </div>
@@ -111,19 +104,15 @@ function NavBar() {
                 xs:flex-row xs:invisible">
                     <a href="#HomeSection" className={`text-white h-1/4 flex items-center space-x-3 group relative w-full`}>
                         <FaHome className="text-2xl  left-0" />
-                        {/* <span className=" text-lg font-semibold  absolute right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Home</span> */}
                     </a>
                     <a href="#ProjectSection" className={`text-white h-1/4 flex items-center space-x-3 group relative w-full ${activeSection === 'SkillSection' ? 'text-active' : ''}`}>
                         <FaProjectDiagram className="text-2xl left-0" />
-                        {/* <span className="ml-10 text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Projects</span> */}
                     </a>
                     <a href="#AboutSection" className={`text-white h-1/4 flex items-center space-x-3 group relative w-full ${activeSection === 'AboutSection' ? 'text-active' : ''}`}>
                         <FaInfo className="text-2xl left-0" />
-                        {/* <span className="ml-10 text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">About</span> */}
                     </a>
                     <a href="#ContactSection" className={`text-white h-1/4 flex items-center space-x-3 group relative w-full ${activeSection === 'ContactSection' ? 'text-active' : ''}`}>
                         <FaEnvelope className="text-2xl left-0" />
-                        {/* <span className="ml-10 text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Contact</span> */}
                     </a>
                 </div>
 
@@ -132,13 +121,13 @@ function NavBar() {
             <div className="mb-1 flex flex-col items-center justify-center  gap-4
             xs:flex-row xs:gap-2"
                 style={{ transform: "scale(0.7)" }}>
-                <a href="https://x.com/adilns786" className="text-eigen text-2xl">
+                <a href={SocialData.Twitter} className="text-eigen text-2xl">
                     <FaTwitter />
                 </a>
-                <a href="https://www.linkedin.com/in/aadil-shah-9b9b2828a/" className="text-eigen text-2xl">
+                <a href={SocialData.LinkedIn} className="text-eigen text-2xl">
                     <FaLinkedin />
                 </a>
-                <a href="https://github.com/AadilShah786" className="text-eigen text-2xl">
+                <a href={SocialData.Github} className="text-eigen text-2xl">
                     <FaGithub />
                 </a>
             </div>

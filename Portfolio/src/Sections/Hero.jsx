@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { useRef, useEffect } from 'react';
-// import { RotateDown } from '../Animations/hero';
-// import LayoutGrid from './layout';
-// import BentoGrid from './Gallery';
-// import ItemGrid from './item';
-// import Bgimage from '../assets/Animation.gif';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Projects from './Projects';
-import Resume from '../assets/resume.pdf';
+import { SocialData } from '../assets/data';
+
+
 function HomePage() {
   const [screen, setscreen] = useState(window.innerWidth);
   const playerRef = useRef(null);
@@ -50,24 +47,24 @@ function HomePage() {
           xs:text-2xl xs:m-0" >Hii, I'm</h6>
           <h1 className=" text-9xl font-bold text-beta 
          xs:text-7xl ">Aadil</h1>
-          <p className="  text-charlie text-lg font-bold
-          xs:text-sm xs:items-center xs:flex xs:flex-col xs:justify-center"><p>Fullstack Developer and </p><p>ML Enthusiast</p></p>
+          <div className="  text-charlie text-lg font-bold
+          xs:text-sm xs:items-center xs:flex xs:flex-col xs:justify-center"><p>Fullstack Developer and </p><p>ML Enthusiast</p></div>
           <div className='flex justify-around mt-4 xs:gap-2'>
-          <a
-            href="#ContactSection"
-            className="  bg-beta p-3  text-faf rounded-lg hover:scale-110 hover:rounded-2xl transition-all duration-100 ease-in-out 
+            <a
+              href="#ContactSection"
+              className="  bg-beta p-3  text-faf rounded-lg hover:scale-110 hover:rounded-2xl transition-all duration-100 ease-in-out 
             xs:p-2 xs:h-fit xs:w-fit"
-          >
-            Contact
-          </a>
-          <a
-            href={Resume}
-            download="AadilResume.pdf"
-            className="  bg-beta p-3  text-faf rounded-lg hover:scale-110 hover:rounded-2xl transition-all duration-100 ease-in-out
+            >
+              Contact
+            </a>
+            <a
+              href={SocialData.Resume}
+              download="AadilResume.pdf"
+              className="  bg-beta p-3  text-faf rounded-lg hover:scale-110 hover:rounded-2xl transition-all duration-100 ease-in-out
             xs:p-2 xs:h-fit xs:w-fit"
-          >
-            Resume
-          </a>
+            >
+              Resume
+            </a>
           </div>
         </div>
 

@@ -2,10 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { TextPlugin } from "gsap/dist/TextPlugin";
-import profile from '../assets/Profile/profile-pic1.png'
 import { TypeAnimation } from 'react-type-animation';
 import { useInView } from 'react-intersection-observer';
-
+import {AboutMeData} from '../assets/data';
 // gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
@@ -118,8 +117,8 @@ function AboutMe() {
                 <div ref={imageRef} className="md:w-1/3 mb-6 md:mb-0 
                 xs:w-3/5 ">
                     <img
-                        src={profile}
-                        alt="Your Name"
+                        src={AboutMeData.Profile}
+                        alt="Aadil Shah"
                         className="rounded-full shadow-md object-cover mx-auto md:mx-0"
                         style={{ border: "1pt solid rgba(7, 6, 15,0.7)", boxShadow: "3px 3px 2px rgba(7, 6, 15,0.7)" }}
                     />
@@ -128,12 +127,7 @@ function AboutMe() {
                     {inView && (
                         <TypeAnimation
                             sequence={[
-                                `Hello! I'm a third-year Computer Science Engineering student with a passion for creating innovative web applications and diving into the world of machine learning. Throughout my academic journey, I've actively participated in hackathons and contributed to my college's Computer Society of India (CSI) chapter.\n 
-                                I specialize in developing dynamic and responsive applications using technologies like React, Tailwind CSS, GSAP, Flutter, Flask, and Python. Currently, I'm expanding my expertise in machine learning, working on exciting projects in Jupyter Notebook.\n
-                                I love solving complex problems and transforming ideas into functional, aesthetically pleasing applications. If you're interested in collaborating or discussing tech, feel free to reach out!`,
-                                () => {
-                                    // console.log('Sequence completed');
-                                },
+                                `${AboutMeData.Info}`,
                             ]}
                             speed={100}
                             wrapper="span"
@@ -143,17 +137,10 @@ function AboutMe() {
                             style={{ whiteSpace: 'pre-line', display: 'inline-block' }}
                         />
                     )}
-                    {/* <h3  className="textref text-2xl font-semibold mb-2">Skills & Expertise</h3> */}
-                    {/* <ul className="textref list-disc list-inside mb-4 text-gray-700">
-                        <li>Skill 1</li>
-                        <li>Skill 2</li>
-                        <li>Skill 3</li>
-                        <li>Skill 4</li>
-                    </ul> */}
                     <h3 className="textref2 text-2xl font-semibold mb-2 
                     xs:text-lg">Education & Certifications</h3>
                     <ul className="textref2 list-disc list-inside mb-4 text-gray-700">
-                        <li>CGPA: 9.23</li>
+                        <li>CGPA: {AboutMeData.CGPA}</li>
                         {/* <li>HSC: 84.3%</li> */}
                         {/* <li>SSC: 92%</li> */}
                     </ul>

@@ -4,7 +4,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { FaReact, FaNodeJs, FaPython, FaJsSquare, FaCss3 } from 'react-icons/fa';
 import { SiTailwindcss, SiFlutter, SiFlask } from 'react-icons/si';
-
+import {skills } from '../assets/data';
 const skillIcons = {
     JavaScript: <FaJsSquare className="text-yellow-500 text-4xl" />,
     React: <FaReact className="text-blue-500 text-4xl" />,
@@ -29,19 +29,19 @@ function Skills() {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    const skills = [
-        { name: 'JavaScript', level: 90 },
-        { name: 'React', level: 70 },
-        { name: 'Tailwind', level: 60 },
-        { name: 'Node.js', level: 60 },
-        { name: 'Python', level: 60 },
-        { name: 'Flutter', level: 70 },
-        { name: 'Flask', level: 85 },
-        { name: 'CSS', level: 80 },
-        // { name: 'Node.js', level: 75 },
-        // { name: 'Python', level: 70 },
-        // Add more skills as needed
-    ];
+    // const skills = [
+    //     { name: 'JavaScript', level: 90 },
+    //     { name: 'React', level: 70 },
+    //     { name: 'Tailwind', level: 60 },
+    //     { name: 'Node.js', level: 60 },
+    //     { name: 'Python', level: 60 },
+    //     { name: 'Flutter', level: 70 },
+    //     { name: 'Flask', level: 85 },
+    //     { name: 'CSS', level: 80 },
+    //     // { name: 'Node.js', level: 75 },
+    //     // { name: 'Python', level: 70 },
+    //     // Add more skills as needed
+    // ];
 
     const skillRefs = useRef([]);
     const containerRef = useRef(null);

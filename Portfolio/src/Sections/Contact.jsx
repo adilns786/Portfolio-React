@@ -1,5 +1,6 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 // import { db } from "../Firebase/config";
+import { SocialData } from "../assets/data";
 import {
     doc,
     collection,
@@ -49,13 +50,13 @@ function Contact() {
     };
 
     return (
-        <div id="connect" className="bg-faf2 " style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}}>
+        <div id="connect" className="bg-faf2 " style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
             <div className="Title font-adlam">{"<"}CONNECT/{">"}</div>
             <div className="sub-title font-adlam">//Get in touch ...</div>
             <div id="ContactSection" className=" p-10 xs:p-4">
 
                 <div className=" mx-auto max-w-4xl bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md text-[#333] font-[sans-serif]">
-                    <div className="bg-beta bg-opacity-25 grid sm:grid-cols-2 items-center gap-16  p-8 font-adlam">
+                    <div className="bg-beta bg-opacity-25 grid sm:grid-cols-2 items-center gap-16 p-8 font-adlam">
 
                         <div>
                             <h1 className="text-3xl font-extrabold ">Let's Talk</h1>
@@ -83,11 +84,11 @@ function Contact() {
                                         </div>
                                         <a
                                             target="blank"
-                                            href="mailto:adilns786@gmail.com"
+                                            href={"mailto:" + SocialData.Email}
                                             className="text-[#007bff] text-sm ml-3"
                                         >
                                             <small className="block">Mail</small>
-                                            <strong>adins786@gmail.com</strong>
+                                            <strong>{SocialData.Email}</strong>
                                         </a>
                                     </li>
                                 </ul>
@@ -96,7 +97,7 @@ function Contact() {
                                 <h2 className="text-lg font-extrabold">Socials</h2>
                                 <ul className="flex mt-3 space-x-4">
                                     <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                                        <a href="https://github.com/AadilShah786">
+                                        <a href={SocialData.Github}>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"
@@ -111,7 +112,7 @@ function Contact() {
                                         </a>
                                     </li>
                                     <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                                        <a href="https://www.linkedin.com/in/aadil-shah-9b9b2828a/">
+                                        <a href={SocialData.LinkedIn}>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="20px"
@@ -127,7 +128,7 @@ function Contact() {
                                         </a>
                                     </li>
                                     <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                                        <a href="https://www.instagram.com/adilns786/">
+                                        <a href={SocialData.Instagram}>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="20px"
@@ -140,7 +141,7 @@ function Contact() {
                                         </a>
                                     </li>
                                     {/* <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                                    <a href="https://www.youtube.com/channel/UCrDsxOJtJAMgyrpW_T1b0sQ">
+                                    <a href={SocialData.Youtube}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 24 24"
@@ -155,7 +156,7 @@ function Contact() {
                                     </a>
                                 </li> */}
                                     <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                                        <a href="https://x.com/adilns786">
+                                        <a href={SocialData.Twitter}>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"
@@ -173,7 +174,7 @@ function Contact() {
                                 </ul>
                             </div>
                         </div>
-                        <form className="ml-auo space-y-4" onSubmit={handleSubmit}>
+                        {/* <form className="ml-auo space-y-4" onSubmit={handleSubmit}>
                             <input
                                 type="text"
                                 placeholder="Name"
@@ -208,7 +209,7 @@ function Contact() {
                             >
                                 Send
                             </button>
-                        </form>
+                        </form> */}
                     </div>
                 </div>
             </div>

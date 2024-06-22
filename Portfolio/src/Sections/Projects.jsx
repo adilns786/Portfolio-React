@@ -3,12 +3,7 @@ import { gsap } from 'gsap';
 import { Observer } from 'gsap/Observer';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
-import p1 from '../assets/Projects/Project1.png';
-import p2 from '../assets/Projects/Project2.png';
-import p3 from '../assets/Projects/Project3.png';
-import p4 from '../assets/Projects/Project4-2.png';
-import p5 from '../assets/Projects/Project5.png';
+import { ProjectData } from '../assets/data';
 import useSlider from './useSlider';
 import { FaReact, FaNodeJs, FaPython, FaJsSquare, FaCss3 } from 'react-icons/fa';
 import { SiTailwindcss, SiFlutter, SiFlask } from 'react-icons/si';
@@ -24,53 +19,6 @@ const skillIcons = {
     CSS: <FaCss3 className='text-blue-500 text-4xl' />
     // Add more icons as needed
 };
-
-const boxInfo = [
-    {
-        id: 1,
-        image: p5,
-        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
-        title: "AirAware",
-        link: "https://airaware-f22c0.web.app/",
-        gitlink: "https://github.com/AadilShah786/AirAware",
-        tech: ['React', 'Python', 'Tailwind'],
-    },
-    {
-        id: 2,
-        image: p4,
-        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
-        title: "Trip Sync",
-        link: null,
-        gitlink: "https://github.com/AadilShah786/TripSync-Travel-Itinerary--Syrus24",
-        tech: ['React', 'CSS', 'JavaScript'],
-    },
-    {
-        id: 3,
-        image: p3,
-        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
-        title: "AQI Monitor",
-        link: "https://air-monitor-5132e.web.app/",
-        gitlink: "https://github.com/AadilShah786/Air-monitoring-react-",
-        tech: ['Flutter', 'Python', 'Flask'],
-
-    },
-    // {
-    //     id: 4,
-    //     image: p2,
-    //     info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
-    //     title: "Project 4",
-    //     link: "https://airaware-f22c0.web.app/",
-    //     gitlink: "https://airaware-f22c0.web.app/",
-    // },
-    // {
-    //     id: 5,
-    //     image: p1,
-    //     info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
-    //     title: "Project 5",
-    //     link: "https://airaware-f22c0.web.app/",
-    //     gitlink: "https://airaware-f22c0.web.app/",
-    // },
-];
 
 gsap.registerPlugin(Observer, ScrollTrigger);
 
@@ -115,7 +63,7 @@ const ProjectCard = () => {
         headingsRef,
         outerWrappersRef,
         innerWrappersRef,
-    } = useSlider(boxInfo);
+    } = useSlider(ProjectData);
 
 
     useEffect(() => {
@@ -160,7 +108,7 @@ const ProjectCard = () => {
     //         () => {
     //             setprev(current);
     //             console.log(current,prev)
-    //             setCurrent((prevIndex) => (prevIndex === boxInfo.length - 1 ? 0 : prevIndex + 1))
+    //             setCurrent((prevIndex) => (prevIndex === ProjectData.length - 1 ? 0 : prevIndex + 1))
     //         },
     //         5000 // Change slide every 5 seconds
     //     );
@@ -237,12 +185,12 @@ const ProjectCard = () => {
 
     // const nextSlide = () => {
     //     setprev(current);
-    //     setCurrent((prevIndex) => (prevIndex === boxInfo.length - 1 ? 0 : prevIndex + 1));
+    //     setCurrent((prevIndex) => (prevIndex === ProjectData.length - 1 ? 0 : prevIndex + 1));
     // };
 
     // const prevSlide = () => {
     //     setprev(current);
-    //     setCurrent((prevIndex) => (prevIndex === 0 ? boxInfo.length - 1 : prevIndex - 1));
+    //     setCurrent((prevIndex) => (prevIndex === 0 ? ProjectData.length - 1 : prevIndex - 1));
     // };
 
     return (
@@ -257,16 +205,16 @@ const ProjectCard = () => {
                     style={{ boxShadow: "5px 5px 5px rgba(0,0,0,0.5),-2px -2px 5px rgba(0,0,0,0.5)" }}
                 >
                     {/* <div ref={imageRef} className="w-full h-fit absolute">
-                        <img src={boxInfo[current].image} alt={boxInfo[current].title} className="w-full object-scale-down" />
+                        <img src={ProjectData[current].image} alt={ProjectData[current].title} className="w-full object-scale-down" />
                     </div>
                     <div ref={textRef} className=" p-8 " >
-                        <h2 className="text-3xl font-bold mb-4">{boxInfo[current].title}</h2>
-                        <p className="text-gray-700 mb-4">{boxInfo[current].info}</p>
-                        <a href={boxInfo[current].link} className="text-blue-500 hover:underline">Demo Link</a>
+                        <h2 className="text-3xl font-bold mb-4">{ProjectData[current].title}</h2>
+                        <p className="text-gray-700 mb-4">{ProjectData[current].info}</p>
+                        <a href={ProjectData[current].link} className="text-blue-500 hover:underline">Demo Link</a>
                         <br />
-                        <a href={boxInfo[current].gitlink} className="text-blue-500 hover:underline">GitHub Link</a>
+                        <a href={ProjectData[current].gitlink} className="text-blue-500 hover:underline">GitHub Link</a>
                     </div> */}
-                    {boxInfo.map((section, index) => (
+                    {ProjectData.map((section, index) => (
                         <section
                             key={index}
                             ref={el => {
@@ -299,7 +247,16 @@ const ProjectCard = () => {
                                                     />
                                                 </button>
                                             }
-                                            <a href={section.gitlink} className="absolute bottom-4 left-4 bg-beta p-3  text-faf rounded-lg hover:underline">GitHub Link</a>
+                                            <div className='absolute bottom-4 left-4 flex items-center justify-center'>
+                                                <a href={section.gitlink} className=" bg-beta p-3  text-faf rounded-lg hover:underline">GitHub Link</a>
+                                                {section.tech.map((item, index) => (
+                                                    <div className='group flex flex-col items-center justify-center'>
+                                                        <div className='rounded-full bg-faf bg-opacity-70 ml-1 mr-1 p-2  hover:bg-opacity-100 hover:bg-faf2 transition-all duration-100'>{skillIcons[item]}
+                                                        </div>
+                                                        <p className='text-sm hidden group-hover:block'>{item}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

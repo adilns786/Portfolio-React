@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import React from "react";
 import { gsap } from "gsap";
+import { achievements } from "../assets/data";
 
 function Achievements() {
     const [screen, setscreen] = useState(window.innerWidth);
@@ -21,33 +22,11 @@ function Achievements() {
             ease: "power3.out",
         });
     };
-    const achievements = [
-        {
-            title: "Jr. Technical Officer CSI Vesit",
-            description: "Received for outstanding performance and contributions to CSI in 2nd year of my engineering.",
-            date: "Oct 2023 - April 2024",
-        },
-        {
-            title: "Udemy Certification in Unity ",
-            description: "Completed a comprehensive certification program in Unity game development from Udemy.",
-            date: "2023",
-        },
-        // {
-        //     title: "Certification in [Your Specialization]",
-        //     description: "Completed a comprehensive certification program in [Your Specialization] from [Institution] in [Year].",
-        //     date: "Year",
-        // },
-        // {
-        //     title: "Top Performer at [Company]",
-        //     description: "Recognized as a top performer for exceptional work and dedication in [Year].",
-        //     date: "Year",
-        // },
-        // Add more achievements as needed
-    ];
+    
 
     return (
         <div className="mb-12 px-6 md:px-12 lg:px-24 font-adlam
-        xs:px-4" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}}>
+        xs:px-4 " style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}}>
             {/* <h2 className="text-4xl font-bold mb-8 text-center">Achievements</h2> */}
             <div className="grid gap-8  lg:grid-cols-2">
                 {achievements.map((achievement, index) => (
