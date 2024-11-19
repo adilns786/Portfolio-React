@@ -101,7 +101,7 @@ function Skills() {
         xs:h-fit" 
         style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}} ref={containerRef}>
             <div className='absolute top-0 left-0'>
-                <div className="Title ">{"<"}SKILLS/{">"}</div>
+                <div className="Title ">{"<"}Skills/{">"}</div>
                 <div className='sub-title'>//Tech Stack I Use ...</div>
             </div>
 

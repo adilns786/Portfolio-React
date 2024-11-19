@@ -1,4 +1,3 @@
-
 import p1 from './Projects/Project1.png';
 import p2 from './Projects/Project2.png';
 import p3 from './Projects/Project3.png';
@@ -6,6 +5,7 @@ import p4 from './Projects/Project4-2.png';
 import p5 from './Projects/Project5.png';
 import profile from './Profile/profile-pic1.png'
 import profile2 from './Profile/profile-pic.png'
+import profile3 from './Profile/profile-pic4.jpeg'
 import Resume from './resume.pdf';
 
 const SocialData = {
@@ -14,6 +14,7 @@ const SocialData = {
     Twitter: "https://x.com/adilns786",
     Github: "https://github.com/AadilShah786",
     Youtube: "",
+    Leetcode:"https://leetcode.com/u/adilns786/",
     Portfolio: "https://adilnshah.web.app/",
     Resume: Resume,
     Email: "adilns786@gmail.com"
@@ -23,7 +24,7 @@ const ProjectData = [
     {
         id: 1,
         image: p5,
-        info: "feybh gfeib igufwbas uwids udwnj guwdib d    hu nhud NA UHDx hodangr 8yiofh fedi",
+        info: "Airaware provides the aqi ",
         title: "AirAware",
         link: "https://airaware-f22c0.web.app/",
         gitlink: "https://github.com/AadilShah786/AirAware",
@@ -82,8 +83,9 @@ const skills = [
 ]
 
 const AboutMeData = {
-    Profile: profile,   //used in hero section
-    Profile2: profile2, //used in navbar
+    Profile: profile3,   //used in hero section
+    Profile2: "https://www.svgrepo.com/show/497407/profile-circle.svg",
+    // Profile2:profile3, //used in navbar
     Info: `Hello! I'm a third-year Computer Science Engineering student with a passion for creating innovative web applications and diving into the world of machine learning. Throughout my academic journey, I've actively participated in hackathons and contributed to my college's Computer Society of India (CSI) chapter.\n 
     I specialize in developing dynamic and responsive applications using technologies like React, Tailwind CSS, GSAP, Flutter, Flask, and Python. Currently, I'm expanding my expertise in machine learning, working on exciting projects in Jupyter Notebook.\n
     I love solving complex problems and transforming ideas into functional, aesthetically pleasing applications. If you're interested in collaborating or discussing tech, feel free to reach out!`, //used for animation dont forget to use /n for new line

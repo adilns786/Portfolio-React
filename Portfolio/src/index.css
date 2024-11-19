@@ -34,6 +34,45 @@ body{
     margin-left: 5vw;
 }
 
+/* 
+.navbutton::before {
+    content: "";
+    right:0;
+    top: -50px;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    background: #161B33;
+    border-radius: 50%;
+    box-shadow: 25px 25px 0 #F8EDE2;
+    z-index: -1;
+}
+.navbutton span::before {
+    content: "";
+    right:0;
+    top: 0px;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 25px 25px 0 #000;
+    z-index: -1;
+    opacity: 0.5;
+}
+.navbutton::after {
+    content: "";
+    right:0;
+    bottom: -50px;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    background: #161B33;
+    border-radius: 50%;
+    box-shadow: 25px -25px 0 #F8EDE2;
+    z-index: -1;
+} */
+
 @media (max-width: 480px) {
     
 .Title{
@@ -50,3 +89,4 @@ body{
     margin-left: 5vw;
 }
 }
+

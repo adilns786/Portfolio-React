@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { TextPlugin } from "gsap/dist/TextPlugin";
 import { TypeAnimation } from 'react-type-animation';
 import { useInView } from 'react-intersection-observer';
-import {AboutMeData} from '../assets/data';
+import { AboutMeData } from '../assets/data';
 // gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,27 +31,35 @@ function AboutMe() {
     });
 
     useEffect(() => {
+        return
         if (screen < 480) return;
         gsap.fromTo(
             imageRef.current,
             {
-                // opacity: 0,
+                opacity: 0,
                 // scale: 0.5,
                 // x: -500,
+                y: 500,
                 // rotation: -180,
+                // z:-100,
+                // rotateX:180,
+                scale: 3,
             },
             {
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: "top 80%",
-                    end: "bottom 120%",
+                    end: "bottom 70%",
                     scrub: true,
                 },
                 opacity: 1,
                 scale: 1,
                 x: 0,
+                y: 0,
                 rotation: 0,
-                duration: 1.5,
+                rotationX: 0,
+                z: 0,
+                // duration: 1.5,
             }
         );
 
@@ -109,20 +117,22 @@ function AboutMe() {
     }, []);
     return (
         <section id="AboutSection" ref={sectionRef} className="font-adlam" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
-            <div className="Title" ref={titleRef}>{"<"}ABOUT ME/{">"}</div>
+            <div className="Title" ref={titleRef}>{"<"}About Me/{">"}</div>
             <div className="sub-title">//A brief introduction about me... </div>
 
             <div className="flex flex-col md:flex-row items-center  py-12 px-6 md:px-12 lg:px-24">
                 {/* Image Section */}
-                <div ref={imageRef} className="md:w-1/3 mb-6 md:mb-0 
+                {AboutMeData.Profile && <>
+                    <div ref={imageRef} className="md:w-1/3 mb-6 md:mb-0 
                 xs:w-3/5 ">
-                    <img
-                        src={AboutMeData.Profile}
-                        alt="Aadil Shah"
-                        className="rounded-full shadow-md object-cover mx-auto md:mx-0"
-                        style={{ border: "1pt solid rgba(7, 6, 15,0.7)", boxShadow: "3px 3px 2px rgba(7, 6, 15,0.7)" }}
-                    />
-                </div>
+                        <img
+                            src={AboutMeData.Profile}
+                            alt="Aadil Shah"
+                            className="rounded-full shadow-md object-cover mx-auto md:mx-0"
+                            style={{ border: "1pt solid rgba(7, 6, 15,0.7)", boxShadow: "3px 3px 2px rgba(7, 6, 15,0.7)" }}
+                        />
+                    </div>
+                </>}
                 <div ref={ref} className="md:w-2/3 md:pl-12 font-adlam">
                     {inView && (
                         <TypeAnimation
@@ -134,7 +144,7 @@ function AboutMe() {
                             cursor={true}
                             // repeat={none}
                             className=" text-gray-700  mb-4 xs:text-sm"
-                            style={{ whiteSpace: 'pre-line', display: 'inline-block' }}
+                            style={{ whiteSpace: 'pre-line', display: 'inline-block', textAlign: "justify" }}
                         />
                     )}
                     <h3 className="textref2 text-2xl font-semibold mb-2 

@@ -34,7 +34,7 @@ function Achievements() {
                     <div  className=" bg-beta bg-opacity-25 p-6  rounded-lg 
                     xs:p-4">
                         <h3 className="text-2xl font-semibold mb-2 xs:text-lg">{achievement.title}</h3>
-                        <p className="text-gray-700  mb-2 xs:text-sm">{achievement.description}</p>
+                        <p className="text-gray-700  mb-2 xs:text-sm text-justify">{achievement.description}</p>
                         <p className="text-gray-500 text-sm xs:text-xs">{achievement.date}</p>
                     </div>
                     </div>

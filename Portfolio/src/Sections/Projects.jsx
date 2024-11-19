@@ -67,8 +67,8 @@ const ProjectCard = () => {
 
 
     useEffect(() => {
+        // return
         if (!div2ref.current || screen < 480) { return }
-
         const element = div2ref.current
         gsap.fromTo(element,
             {
@@ -86,8 +86,8 @@ const ProjectCard = () => {
                 opacity: 1,
                 scrollTrigger: {
                     trigger: element.previousElementSibling, // Trigger animation based on the previous sibling element
-                    start: "top top", // When the top of the trigger element hits the top of the viewport
-                    end: "bottom top", // When the bottom of the trigger element hits the top of the viewport
+                    start: "top bottom", // When the top of the trigger element hits the top of the viewport
+                    end: "top top", // When the bottom of the trigger element hits the top of the viewport
                     scrub: true, // Smooth scrubbing
                     // markers: true, // Markers to visualize the start and end points (for debugging)
                     // onLeave: () => setproject(false), // Call setProject(true) when the scroll leaves the end position
@@ -194,14 +194,15 @@ const ProjectCard = () => {
     // };
 
     return (
-        <div ref={div2ref} className=' border-blue-800' id=''
-            style={{
-                height: "100vh", left: "0vw", rotate: "0",
-                borderRadius: "10px", backgroundColor: "", position: 'absolute', zIndex: ""
-                , width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`, top: `${screen > 480 ? '105vh' : '100vh'}`
-            }}>
-            <div className="flex items-center justify-center h-screen  relative" >
-                <div ref={containerRef} className="relative w-11/12 h-5/6 bg-white rounded-lg shadow-lg overflow-hidden "
+        < div className=' font-adlam h-screen
+        xs:h-fit'
+            style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
+            <section id='ProjectSection' className='Title '>
+                {"<"}My Projects/{">"}
+            </section>
+
+            <div ref={div2ref} className="flex items-center justify-center h-5/6  relative  mt-4 xs:hidden" >
+                <div ref={containerRef} className="relative w-11/12 h-full bg-white rounded-lg shadow-lg overflow-hidden "
                     style={{ boxShadow: "5px 5px 5px rgba(0,0,0,0.5),-2px -2px 5px rgba(0,0,0,0.5)" }}
                 >
                     {/* <div ref={imageRef} className="w-full h-fit absolute">
@@ -247,11 +248,14 @@ const ProjectCard = () => {
                                                     />
                                                 </button>
                                             }
-                                            <div className='absolute bottom-4 left-4 flex items-center justify-center'>
+                                            <div className='absolute bottom-4 left-4 flex items-center justify-center
+                                            xs:flex-col-reverse xs:justify-start xs:items-start'>
                                                 <a href={section.gitlink} className=" bg-beta p-3  text-faf rounded-lg hover:underline">GitHub Link</a>
                                                 {section.tech.map((item, index) => (
-                                                    <div className='group flex flex-col items-center justify-center'>
-                                                        <div className='rounded-full bg-faf bg-opacity-70 ml-1 mr-1 p-2  hover:bg-opacity-100 hover:bg-faf2 transition-all duration-100'>{skillIcons[item]}
+                                                    <div className='group flex flex-col items-center justify-center gap-2
+                                                    xs:flex-row  xs:scale-75 '>
+                                                        <div className='rounded-full bg-faf bg-opacity-70 ml-1 mr-1 p-2  hover:bg-opacity-100 hover:bg-faf2 transition-all duration-100
+                                                        xs:m-0 xs:bg-opacity-100 '>{skillIcons[item]}
                                                         </div>
                                                         <p className='text-sm hidden group-hover:block'>{item}</p>
                                                     </div>
@@ -281,7 +285,47 @@ const ProjectCard = () => {
                     &#10095;
                 </button>
             </div>
+
+            <div className='hidden xs:block h-fit m-0 p-0'>
+                <div className=" pb-2 h-fit">
+                    {/* <h2 className="text-3xl font-semibold text-center mb-8">My Projects</h2> */}
+                    <div className="flex overflow-x-scroll p-4 space-x-4 h-fit items-center">
+                        {ProjectData.map((project) => (
+                            <div key={project.id} className="flex-shrink-0 w-[95%] h-fit rounded-lg overflow-hidden shadow-lg">
+                                <img src={project.image} alt={project.title} className="w-full h-60 object-cover" />
+                                <div className="p-4 bg-white">
+                                    <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+                                    <p className="text-gray-600 text-sm mb-2">{project.info}</p>
+                                    <div className="mt-4 flex justify-between">
+
+                                        <a href={project.gitlink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                                            GitHub
+                                        </a>
+                                        {project.link ? (
+                                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                                                Visit
+                                            </a>
+                                        ) : (
+                                            <span className="text-gray-400">No Link</span>
+                                        )}
+                                    </div>
+                                    <div className="mt-2 flex flex-wrap">
+                                        {project.tech.map((tech, index) => (
+                                            <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            {/* </div> */}
+
         </div>
+
     );
 };
 

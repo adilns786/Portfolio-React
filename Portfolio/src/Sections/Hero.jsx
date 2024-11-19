@@ -3,6 +3,8 @@ import { useRef, useEffect } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Projects from './Projects';
 import { SocialData } from '../assets/data';
+import { gsap } from 'gsap';
+import { TypeAnimation } from 'react-type-animation';
 
 
 function HomePage() {
@@ -32,21 +34,55 @@ function HomePage() {
       player.style.zIndex = '-1'; // Place the player behind other content
     }
   }, []);
+  const text = "Aadil";
 
+  useEffect(() => {
+    // Animate each letter with a stagger effect
+    gsap.fromTo(".letter", {
+      opacity: 0,
+      y: -200,
 
+    }, {
+      duration: 3,           // Duration of the animation for each letter
+      opacity: 1,            // Final opacity
+      y: 0,                  // Final position
+      ease: "power2.out",    // Easing function
+      stagger: 0.5           // Stagger delay between each letter
+    });
+  }, []);
+  // Split text into individual letters and wrap them in spans
+  const letters = text.split("").map((letter, index) => (
+    <span key={index} className="letter">
+      {letter}
+    </span>
+  ));
   return (
     <section id='HomeSection' className=" overflow-y-visible overflow-x-hidden font-adlam" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
 
       <section id='hero' className="m-0 p-0 relative items-center justify-center flex h-screen w-1/2
       xs:w-full" >
         {/* First div */}
-        <div className=" flex flex-col justify-center mb-0 font-adlam relative w-fit  
+        <div className=" flex flex-col justify-center mb-0 font-adlam relative w-7/12
         xs:items-center "
           style={{ zIndex: 1 }}>
           <h6 className="text-3xl font-bold text-charlie 
           xs:text-2xl xs:m-0" >Hii, I'm</h6>
-          <h1 className=" text-9xl font-bold text-beta 
-         xs:text-7xl ">Aadil</h1>
+          {/* <h1 className=" text-9xl font-bold text-beta 
+         xs:text-7xl ">{letters}</h1> */}
+          <TypeAnimation
+            sequence={[
+              // Same substring at the start will only be typed once, initially
+              'Aadil',
+              2000,
+              'Shah',
+              2000,
+            ]}
+            speed={20}
+            className='text-9xl font-bold text-beta 
+            xs:text-7xl '
+            // style={{ fontSize: '2em' }}
+            repeat={Infinity}
+          />
           <div className="  text-charlie text-lg font-bold
           xs:text-sm xs:items-center xs:flex xs:flex-col xs:justify-center"><p>Fullstack Developer and </p><p>ML Enthusiast</p></div>
           <div className='flex justify-around mt-4 xs:gap-2'>
@@ -84,8 +120,11 @@ function HomePage() {
       </section> */}
 
 
-      <Projects />
-      <section id='ProjectSection' className='Title' style={{ marginBottom: "90vh" }}>{"<"}PROJECTS/{">"}</section>
+
+      {/* <div className='hidden xs:block ' style={{height:"50vh"}}>
+          <Projects />
+
+        </div> */}
     </section>
   );
 }
