@@ -25,8 +25,10 @@ function Achievements() {
     
 
     return (
-        <div className="mb-12 px-6 md:px-12 lg:px-24 font-adlam
-        xs:px-4 " style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}}>
+        <div className="mb-12 px-6 md:px-12 lg:px-24 font-adlam w-full
+        xs:px-4 " 
+        // style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}`}}
+        >
             {/* <h2 className="text-4xl font-bold mb-8 text-center">Achievements</h2> */}
             <div className="grid gap-8  lg:grid-cols-2">
                 {achievements.map((achievement, index) => (

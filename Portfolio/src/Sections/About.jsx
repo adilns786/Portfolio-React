@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TypeAnimation } from 'react-type-animation';
 import { useInView } from 'react-intersection-observer';
 import { AboutMeData } from '../assets/data';
+import Achievements from "./Achieve";
 // gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
@@ -116,7 +117,9 @@ function AboutMe() {
         return () => observer.disconnect();
     }, []);
     return (
-        <section id="AboutSection" ref={sectionRef} className="font-adlam" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
+        <section id="AboutSection" ref={sectionRef} className="font-adlam h-screen w-full" 
+        // style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}
+        >
             <div className="Title" ref={titleRef}>{"<"}About Me/{">"}</div>
             <div className="sub-title">//A brief introduction about me... </div>
 
@@ -157,7 +160,7 @@ function AboutMe() {
                 </div>
 
             </div>
-
+                <Achievements/>
         </section>
     );
 }

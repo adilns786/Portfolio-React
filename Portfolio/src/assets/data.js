@@ -12,7 +12,7 @@ const SocialData = {
     LinkedIn: "https://www.linkedin.com/in/adilns786/",
     Instagram: "https://www.instagram.com/adilns786/",
     Twitter: "https://x.com/adilns786",
-    Github: "https://github.com/AadilShah786",
+    Github: "https://github.com/adilns786",
     Youtube: "",
     Leetcode:"https://leetcode.com/u/adilns786/",
     Portfolio: "https://adilnshah.web.app/",
@@ -95,9 +95,9 @@ const AboutMeData = {
 }
 const achievements = [
     {
-        title: "Jr. Technical Officer CSI Vesit",
+        title: "Technical Officer CSI Vesit",
         description: "Received for outstanding performance and contributions to CSI in 2nd year of my engineering.",
-        date: "Oct 2023 - April 2024",
+        date: "Oct 2023 - Ongoing",
     },
     {
         title: "Udemy Certification in Unity ",

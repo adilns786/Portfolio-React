@@ -7,7 +7,11 @@ import { gsap } from 'gsap';
 import { TypeAnimation } from 'react-type-animation';
 
 
-function HomePage() {
+const HomePage = ({ scrollIndex }) => {
+  useEffect(() => {
+      // You can implement behavior based on scrollIndex here
+      console.log("Current section index in HeroProject:", scrollIndex);
+  }, [scrollIndex]);
   const [screen, setscreen] = useState(window.innerWidth);
   const playerRef = useRef(null);
   const handleResize = () => {
@@ -56,8 +60,13 @@ function HomePage() {
       {letter}
     </span>
   ));
+  const handleOpenPdf = () => {
+    // The path should be relative to the public folder
+    const pdfUrl = SocialData.Resume;
+    window.open(pdfUrl, "_blank"); // Opens the PDF in a new browser tab
+  };
   return (
-    <section id='HomeSection' className=" overflow-y-visible overflow-x-hidden font-adlam" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
+    <section id='HomeSection' className="h-screen overflow-y-visible overflow-x-hidden font-adlam" style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
 
       <section id='hero' className="m-0 p-0 relative items-center justify-center flex h-screen w-1/2
       xs:w-full" >
@@ -94,7 +103,7 @@ function HomePage() {
               Contact
             </a>
             <a
-              href={SocialData.Resume}
+              onClick={handleOpenPdf}
               download="AadilResume.pdf"
               className="  bg-beta p-3  text-faf rounded-lg hover:scale-110 hover:rounded-2xl transition-all duration-100 ease-in-out
             xs:p-2 xs:h-fit xs:w-fit"

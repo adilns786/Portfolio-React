@@ -22,8 +22,8 @@ const skillIcons = {
 
 gsap.registerPlugin(Observer, ScrollTrigger);
 
-const ProjectCard = () => {
-    // const [current, setCurrent] = useState(0);
+const ProjectCard = ({ scrollIndex }) => {
+    const [prevScrollIndex, setPrevScrollIndex] = useState(0);
     const [prev, setprev] = useState(0);
 
     const timeoutRef = useRef(null);
@@ -32,15 +32,6 @@ const ProjectCard = () => {
     const textRef = useRef(null);
     const div2ref = useRef(null);
 
-    // const sectionsRef = useRef([]);
-    // const imagesRef = useRef([]);
-    // const headingsRef = useRef([]);
-    // const outerWrappersRef = useRef([]);
-    // const innerWrappersRef = useRef([]);
-    // const observerRef = useRef(null);
-    // const currentIndex = useRef(-1);
-    // const animating = useRef(false);
-    // const div2ref = useRef(null);
     const [screen, setscreen] = useState(window.innerWidth);
     const handleResize = () => {
         setscreen(window.innerWidth);
@@ -53,6 +44,50 @@ const ProjectCard = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    const animationTimeline = useRef(gsap.timeline({paused: true}));
+
+    useEffect(() => {
+        // Check if the scrollIndex has changed
+        if (prevScrollIndex === 0 && scrollIndex === 1) {
+            customGsapAnimation(); // Trigger GSAP animation when scrollIndex moves from 0 to 1
+        }
+    
+        // Reverse the GSAP animation when the scrollIndex goes from 1 to 0
+        if (prevScrollIndex === 1 && scrollIndex === 0) {
+            animationTimeline.current.reverse(); // Reverse the GSAP animation with timeline reverse
+        }
+    
+        setPrevScrollIndex(scrollIndex); // Update the previous index
+    }, [scrollIndex, prevScrollIndex]);
+
+    const customGsapAnimation = () => {
+        if (!div2ref.current || screen < 480) return;
+
+        const element = div2ref.current;
+        
+        // Reset timeline if it already exists
+        animationTimeline.current.clear();
+
+        // GSAP animation triggered manually
+        animationTimeline.current.fromTo(element, 
+            {
+                y: -(window.innerHeight + window.innerWidth * 0.20),
+                x: (element.offsetWidth / 2),
+                rotation: -50,
+                scale: 0.85,
+                opacity: 1,
+            },
+            {
+                y: 0,
+                x: 0,
+                rotation: 0,
+                scale: 1,
+                opacity: 1,
+            }
+        ).play(); // Play the timeline
+    };
+
     const {
         current,
         setCurrent,
@@ -66,155 +101,22 @@ const ProjectCard = () => {
     } = useSlider(ProjectData);
 
 
-    useEffect(() => {
-        // return
-        if (!div2ref.current || screen < 480) { return }
-        const element = div2ref.current
-        gsap.fromTo(element,
-            {
-                y: -(window.innerHeight + window.innerWidth * 0.20), // Initial state: Move up slightly
-                x: (element.offsetWidth / 2),  // Initial state: Move right slightly
-                rotation: -50,
-                scale: 1,
-                opacity: 1,
-            },
-            {
-                y: 0, // Final state
-                x: 0, // Final state
-                rotation: 0, // Final 
-                scale: 1,
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: element.previousElementSibling, // Trigger animation based on the previous sibling element
-                    start: "top bottom", // When the top of the trigger element hits the top of the viewport
-                    end: "top top", // When the bottom of the trigger element hits the top of the viewport
-                    scrub: true, // Smooth scrubbing
-                    // markers: true, // Markers to visualize the start and end points (for debugging)
-                    // onLeave: () => setproject(false), // Call setProject(true) when the scroll leaves the end position
-                    // once: true,
-                }
-            }
-        );
-    }, []);
-
-    // const resetTimeout = () => {
-    //     if (timeoutRef.current) {
-    //         clearTimeout(timeoutRef.current);
-    //     }
-    // };
-    // useEffect(() => {
-    //     resetTimeout();
-    //     timeoutRef.current = setTimeout(
-    //         () => {
-    //             setprev(current);
-    //             console.log(current,prev)
-    //             setCurrent((prevIndex) => (prevIndex === ProjectData.length - 1 ? 0 : prevIndex + 1))
-    //         },
-    //         5000 // Change slide every 5 seconds
-    //     );
-
-    //     // const tl = gsap.timeline();
-    //     // tl.fromTo(containerRef.current, { opacity: 0 }, { opacity: 1, duration: 1 });
-    //     // tl.fromTo(imageRef.current, { x: -200, opacity: 0 }, { x: 0, opacity: 1, duration: 1 }, "-=0.5");
-    //     // tl.fromTo(textRef.current, { x: 200, opacity: 0 }, { x: 0, opacity: 1, duration: 1 }, "-=0.5");
-
-    //     return () => {
-    //         resetTimeout();
-    //     };
-    // }, [current]);
-
-    // useEffect(() => {
-    //     const sections = sectionsRef.current;
-    //     const images = imagesRef.current;
-    //     const headings = headingsRef.current;
-    //     const outerWrappers = outerWrappersRef.current;
-    //     const innerWrappers = innerWrappersRef.current;
-
-    //     gsap.set(outerWrappers, { yPercent: 100 });
-    //     gsap.set(innerWrappers, { yPercent: -100 });
-
-    //     const wrap = gsap.utils.wrap(0, sections.length);
-
-    //     const gotoSection = (index, direction) => {
-    //         index = wrap(index);
-    //         animating.current = true;
-    //         const fromTop = direction === -1;
-    //         const dFactor = fromTop ? -1 : 1;
-    //         const tl = gsap.timeline({
-    //             defaults: { duration: 1.25, ease: "power1.inOut" },
-    //             onComplete: () => animating.current = false
-    //         });
-
-    //         if (prev >= 0) {
-
-    //             gsap.set(sections[prev], { zIndex: 0 });
-    //             tl.to(images[prev], { yPercent: -15 * dFactor })
-    //                 .set(sections[prev], { autoAlpha: 0 });
-    //             // console.log(`this is important2 prev--${prev} curr--${current}`)
-
-    //         }
-
-    //         gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
-    //         tl.fromTo([outerWrappers[index], innerWrappers[index]], {
-    //             yPercent: i => i ? -100 * dFactor : 100 * dFactor
-    //         }, {
-    //             yPercent: 0
-    //         }, 0)
-    //             .fromTo(images[index], { yPercent: 15 * dFactor }, { yPercent: 0 }, 0)
-    //             .fromTo(headings[index], {
-    //                 autoAlpha: 0,
-    //                 yPercent: 150 * dFactor
-    //             }, {
-    //                 autoAlpha: 1,
-    //                 yPercent: 0,
-    //                 duration: 1,
-    //                 ease: "power2",
-    //                 stagger: {
-    //                     each: 0.02,
-    //                     from: "random"
-    //                 }
-    //             }, 0.2);
-
-    //         currentIndex.current = index;
-    //     };
-    //     gotoSection(current, -1);
-
-    // }, [current]);
-
-
-
-    // const nextSlide = () => {
-    //     setprev(current);
-    //     setCurrent((prevIndex) => (prevIndex === ProjectData.length - 1 ? 0 : prevIndex + 1));
-    // };
-
-    // const prevSlide = () => {
-    //     setprev(current);
-    //     setCurrent((prevIndex) => (prevIndex === 0 ? ProjectData.length - 1 : prevIndex - 1));
-    // };
-
     return (
-        < div className=' font-adlam h-screen
+        < div className=' font-adlam h-screen  w-full
         xs:h-fit'
-            style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
+            style={{
+                //  width: `${screen > 480 ? '95vw' : '100vw'}`,
+                //   marginLeft: `${screen > 480 ? '3vw' : '0'}` 
+                  }}>
             <section id='ProjectSection' className='Title '>
-                {"<"}My Projects/{">"}
+                {/* {"<"}My Projects/{">"} */}
             </section>
 
-            <div ref={div2ref} className="flex items-center justify-center h-5/6  relative  mt-4 xs:hidden" >
-                <div ref={containerRef} className="relative w-11/12 h-full bg-white rounded-lg shadow-lg overflow-hidden "
+            <div ref={div2ref} className="flex items-center justify-center h-full w-full  relative   xs:hidden" >
+                <div ref={containerRef} className="relative w-full h-full bg-white rounded-lg shadow-lg overflow-hidden "
                     style={{ boxShadow: "5px 5px 5px rgba(0,0,0,0.5),-2px -2px 5px rgba(0,0,0,0.5)" }}
                 >
-                    {/* <div ref={imageRef} className="w-full h-fit absolute">
-                        <img src={ProjectData[current].image} alt={ProjectData[current].title} className="w-full object-scale-down" />
-                    </div>
-                    <div ref={textRef} className=" p-8 " >
-                        <h2 className="text-3xl font-bold mb-4">{ProjectData[current].title}</h2>
-                        <p className="text-gray-700 mb-4">{ProjectData[current].info}</p>
-                        <a href={ProjectData[current].link} className="text-blue-500 hover:underline">Demo Link</a>
-                        <br />
-                        <a href={ProjectData[current].gitlink} className="text-blue-500 hover:underline">GitHub Link</a>
-                    </div> */}
+
                     {ProjectData.map((section, index) => (
                         <section
                             key={index}
@@ -286,7 +188,7 @@ const ProjectCard = () => {
                 </button>
             </div>
 
-            <div className='hidden xs:block h-fit m-0 p-0'>
+            <div className='hidden xs:block h-screen m-0 p-0'>
                 <div className=" pb-2 h-fit">
                     {/* <h2 className="text-3xl font-semibold text-center mb-8">My Projects</h2> */}
                     <div className="flex overflow-x-scroll p-4 space-x-4 h-fit items-center">

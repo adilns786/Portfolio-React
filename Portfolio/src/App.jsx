@@ -3,7 +3,7 @@ import AboutMe from './Sections/About';
 import Achievements from './Sections/Achieve';
 import Contact from './Sections/Contact';
 import HeroProject from './Sections/Hero';
-import SkillSection from './Sections/skills';
+import SkillSection from './Sections/Skills';
 import NavBar from './Sections/Nav';
 import Projects from './Sections/Projects';
 

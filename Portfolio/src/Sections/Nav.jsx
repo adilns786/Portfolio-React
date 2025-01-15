@@ -70,7 +70,7 @@ function NavBar() {
     return (
         <header
             ref={navbarRef}
-            className="bg-charlie fixed w-14  left-0 top-0 z-40 h-screen  flex flex-col items-center justify-between transition-all duration-300 font-adlam
+            className="bg-charlie bg-opacity-25 fixed w-[calc(56px)]  left-0 top-0 z-40 h-screen  flex flex-col items-center justify-between transition-all duration-300 font-adlam
         xs:flex-row xs:w-screen xs:h-12"
             style={{ overflowX: "visible" }}
         >

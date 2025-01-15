@@ -50,7 +50,9 @@ function Contact() {
     };
 
     return (
-        <div id="connect" className="bg-faf2 " style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}>
+        <div id="connect" className="bg-faf2 h-screen w-full" 
+        // style={{ width: `${screen > 480 ? '95vw' : '100vw'}`, marginLeft: `${screen > 480 ? '5vw' : '0'}` }}
+        >
             <div className="Title font-adlam">{"<"}CONNECT/{">"}</div>
             <div className="sub-title font-adlam">//Get in touch ...</div>
             <div id="ContactSection" className=" p-10 xs:p-4">
